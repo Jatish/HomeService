@@ -1,0 +1,10 @@
+D:\Projects\HomeService-Grocery\HSG.DataAccess\bin\Debug\HSG.DataAccess.dll
+D:\Projects\HomeService-Grocery\HSG.DataAccess\bin\Debug\HSG.DataAccess.pdb
+D:\Projects\HomeService-Grocery\HSG.DataAccess\obj\Debug\ResolveAssemblyReference.cache
+D:\Projects\HomeService-Grocery\HSG.DataAccess\obj\Debug\HSG.DataAccess.dll
+D:\Projects\HomeService-Grocery\HSG.DataAccess\obj\Debug\HSG.DataAccess.pdb
+C:\Chintu\Projects\Home Service\Application\HomeService-Grocery\HSG.DataAccess\bin\Debug\HSG.DataAccess.dll
+C:\Chintu\Projects\Home Service\Application\HomeService-Grocery\HSG.DataAccess\bin\Debug\HSG.DataAccess.pdb
+C:\Chintu\Projects\Home Service\Application\HomeService-Grocery\HSG.DataAccess\obj\Debug\HSG.DataAccess.csprojResolveAssemblyReference.cache
+C:\Chintu\Projects\Home Service\Application\HomeService-Grocery\HSG.DataAccess\obj\Debug\HSG.DataAccess.dll
+C:\Chintu\Projects\Home Service\Application\HomeService-Grocery\HSG.DataAccess\obj\Debug\HSG.DataAccess.pdb
