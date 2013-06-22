@@ -1,0 +1,98 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Views/Shared/HSGMaster.Master" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<asp:Content ID="contentHead" ContentPlaceHolderID="cphMasterHead" runat="server">
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+
+            $('#banner-fade').bjqs({
+                height: 280,
+                width: 720,
+                responsive: true
+            });
+
+            // To hide the digital sign by the menu manufacturer.
+            $("a").each(function (index) {
+                if ($(this).text().toString().indexOf("No") > -1) {
+                    $(this).parent().parent().remove();
+                }
+            });
+
+            function mycarousel_initCallback(carousel) {
+                // Disable autoscrolling if the user clicks the prev or next button.
+                carousel.buttonNext.bind('click', function () {
+                    carousel.startAuto(0);
+                });
+
+                carousel.buttonPrev.bind('click', function () {
+                    carousel.startAuto(0);
+                });
+
+                // Pause autoscrolling if the user moves with the cursor over the clip.
+                carousel.clip.hover(function () {
+                    carousel.stopAuto();
+                }, function () {
+                    carousel.startAuto();
+                });
+            };
+
+            jQuery(document).ready(function () {
+                jQuery('#ulCarouselCategories').jcarousel({
+                    auto: 2,
+                    wrap: 'last',
+                    visible: 5,
+                    scroll: 2,
+                    initCallback: mycarousel_initCallback
+                });
+
+                jQuery('#ulCareouselRecommendations').jcarousel({
+                    auto: 2,
+                    wrap: 'last',
+                    visible: 5,
+                    scroll: 2,
+                    initCallback: mycarousel_initCallback
+                });
+            });
+
+        });
+      </script>
+    <asp:ContentPlaceHolder ID="cphNestedMasterHead" runat="server">        
+    </asp:ContentPlaceHolder>
+</asp:Content>
+
+<asp:Content ID="contentBody" ContentPlaceHolderID="cphMasterBody" runat="server">
+<table width="100%">
+    <tr>
+        <td>
+            <asp:ContentPlaceHolder ID="cphNestedMasterBody" runat="server">        
+            </asp:ContentPlaceHolder>
+        </td>
+        <td style="width:30%; vertical-align:top;">
+            <table width="100%" style="height:100%;">
+                <tr>
+                    <td style="width:30%;">
+                        <div class="list-heading">My Basket:</div>
+                        <div style="height:298px;" class="list-body">Basket Details</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="list-heading">New Products:</div>
+                        <div id="divTrans" style="height:120px;" class="list-body">
+                            <a href="javascript:void(0);"><img src="http://static.flickr.com/66/199481236_dc98b5abb3_s.jpg" width="75px" height="75px" alt="" /></a>
+                            <a href="javascript:void(0);"><img src="http://static.flickr.com/66/199481236_dc98b5abb3_s.jpg" alt="" /></a>
+                            <a href="javascript:void(0);"><img src="http://static.flickr.com/66/199481236_dc98b5abb3_s.jpg" alt="" /></a>
+                            
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="list-heading">Best Selling Products:</div>
+                        <div style="height:120px;" class="list-body">Best Selling Products</div>                                
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>    
+</asp:Content>

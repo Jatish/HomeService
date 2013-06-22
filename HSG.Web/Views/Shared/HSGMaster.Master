@@ -1,0 +1,338 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<!DOCTYPE html>
+
+<html>
+
+<head runat="server">
+    <meta name="viewport" content="width=device-width" />
+    <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
+    <link rel="stylesheet" type="text/css" href="<%= Url.Content("~/Content/CSS/HSG.css?ver=1.0.0") %>" />
+    <link rel="stylesheet" type="text/css" href="<%= Url.Content("~/Content/CSS/menu.css?ver=1.0.0") %>" />
+    <link rel="stylesheet" type="text/css" href="<%= Url.Content("~/Content/CSS/Slider/bjqs.css?ver=1.0.0") %>" />
+    <link rel="stylesheet" type="text/css" href="<%= Url.Content("~/Content/CSS/carousal.css?ver=1.0.0") %>" />
+
+    <script type="text/javascript" src="<%= Url.Content("~/Scripts/Default/jquery-1.7.1.min.js?ver=1.0.0") %>"></script>
+    <script type="text/javascript" src="<%= Url.Content("~/Content/Scripts/menu.js?ver=1.0.0") %>"></script>
+    <script type="text/javascript" src="<%= Url.Content("~/Content/Scripts/Slider/bjqs-1.3.min.js?ver=1.0.0") %>"></script>
+    <script type="text/javascript" src="<%= Url.Content("~/Content/Scripts/Carousal/jquery.jcarousel.js?ver=1.0.0") %>"></script>
+    <script type="text/javascript" src="<%= Url.Content("~/Content/Scripts/Carousal/jquery.cycle.all.js?ver=1.0.0") %>"></script>
+    <script type="text/javascript">
+    </script>
+    
+    <asp:ContentPlaceHolder ID="cphMasterHead" runat="server">        
+    </asp:ContentPlaceHolder>
+</head>
+
+<body> 
+<div id="main">
+    <table width="1050px">
+
+    <tr><td>
+    <table id="tblHeader">
+    <tr>
+        <td rowspan="2" style="width:130px; height:130px;"><img src="../../Content/Images/Logo-HS.png" alt="No Image" width="100%" /></td>
+        <td style="vertical-align:top; text-align:right;">
+            <div class="menu">
+                <ul class="menu">		
+					<li><a href="#">Home</a></li>
+					<li><a href="#">About</a></li>
+					<li><a href="#">Account</a></li>
+					<li><a href="#">WishList</a></li>
+					<li><a href="#">Login</a>
+                        <ul>
+							    <li>
+                                 <div id="divLogin">
+                                    <table width="100%">
+                                        <tr><td><input id='txtUserName' name='p' placeholder='UserID' type='text'/></td></tr>
+                                        <tr><td><input id='txtPassword' name='q' placeholder='Password' type='text'/></td></tr>
+                                        <tr><td><button id='btnLogin' type='submit'><span>Login</span></button></td></tr>
+                                    </table>
+                                  </div>
+                                </li>
+                        </ul>
+                    </li>
+					<li><a href="#">SignUp</a></li>
+					<li><a href="#">ContactUs</a></li>
+			</ul>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table width="100%">
+            <tr><td style="width:90%;">
+                <div id="search-box">
+                  <form action='/search' id='search-form' method='get' target='_top'>
+                    <input id='search-text' name='q' placeholder="What do you want ?" type="text"/>
+                    <button id='search-button' type='submit'><span>Search</span></button>
+                  </form>
+                </div>
+            </td>
+            <td style="width:10%; text-align:center; vertical-align:middle;">
+                <div>
+                  <button id="btnCheckout" class="hsInputStyle" type="button" style="width:98%;"><span>Checkout</span></button>
+                </div>
+            </td></tr>
+            </table>
+        </td>
+    </tr>
+    </table>
+    </td></tr>
+
+    <tr>
+    <td style="background: #d9d9d9 url(Content/Images/dock-bg.gif) repeat-x left bottom; vertical-align:middle;" class="all-round-corner">
+    <!-- START Menu -->
+    <div class="menu">
+     <ul id="navMenu" class="menu">
+
+			<li><a href="#" class="parent">Grocery & Staples</a>		
+				<ul>
+					<li><a href="#">Atta & Flours</a>
+						<ul>
+							<li><a href="#">Atta</a></li>
+							<li><a href="#">Suji</a></li>
+							<li><a href="#">Maida</a></li>
+							<li><a href="#">Besan</a></li>		
+							<li><a href="#">Sattu/Chhatua</a></li>
+							<li><a href="#">Other Flours</a></li>
+						</ul>
+					</li>
+					<li><a href="#">Dals & Pulses</a>
+						<ul>
+							<li><a href="#">Chana Dal</a></li>
+							<li><a href="#">Groundnuts</a></li>		
+							<li><a href="#">Mung Dal</a></li>
+                            <li><a href="#">Toor Dal</a></li>
+							<li><a href="#">Urad Dal</a></li>		
+							<li><a href="#">Other Dal</a></li>
+						</ul>
+					</li>
+					<li><a href="#">Oil/Ghee</a>
+						<ul>
+							<li><a href="#">Sunflower</a></li>
+							<li><a href="#">Mustard</a></li>		
+							<li><a href="#">Olive</a></li>
+                            <li><a href="#">Other</a></li>
+                            <li><a href="#">Ghee/Butter</a></li>
+						</ul>
+					</li>
+					<li><a href="#">Rice Products</a>
+						<ul>
+							<li><a href="#">White Rice</a></li>
+							<li><a href="#">Brown Rice/Par Boiled</a></li>
+                            <li><a href="#">Basmati</a></li>
+							<li><a href="#">Rice Products</a></li>							
+						</ul>
+					</li>
+		            <li><a href="#">Salt/Sugar</a>
+						<ul>
+							<li><a href="#">Salt</a></li>
+							<li><a href="#">Sugar</a></li>
+                            <li><a href="#">SugarFree</a></li>
+						</ul>
+					</li>
+                    <li><a href="#">Spices & Masala</a>
+						<ul>
+							<li><a href="#">Basic</a></li>
+							<li><a href="#">Blended</a></li>
+                            <li><a href="#">Whole</a></li>
+						</ul>
+					</li>
+                    <li><a href="#">Dry Fruits</a>
+						<ul>
+							<li><a href="#">Almonds</a></li>
+							<li><a href="#">Cashews</a></li>
+                            <li><a href="#">Raisins</a></li>
+                            <li><a href="#">Other Dry Fruits</a></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+		
+			<li><a href="#" class="parent">Bread, Bakery & Diary</a>
+				<ul>
+					<li><a href="#">Bread & Bakery</a>		
+						<ul>
+							<li><a href="#">Bread</a></li>
+							<li><a href="#">Buns & Bakery</a></li>
+							<li><a href="#">Cakes</a></li>
+						</ul>
+					</li>
+					<li><a href="#">Labyrinthfishes</a>
+						<ul>
+		
+							<li><a href="#">Belontia</a></li>
+
+							<li><a href="#">Betta</a></li>
+							<li><a href="#">Colisa</a></li>
+							<li><a href="#">Macropodus</a></li>
+							<li><a href="#">Malpulutta</a></li>
+							<li><a href="#">Parosphromenus</a></li>
+		
+							<li><a href="#">Pseudosphromenus</a></li>
+
+							<li><a href="#">Sphaerichthys</a></li>
+							<li><a href="#">Trichogaster</a></li>
+							<li><a href="#">Trichopsis</a></li>
+						</ul>
+					</li>
+					<li><a href="#">Kissing gouramis</a></li>
+		
+					<li><a href="#">Pike-heads</a></li>
+
+					<li><a href="#">Giant gouramis</a></li>
+		
+				</ul>
+			</li>
+		
+			<li><a href="#" class="parent">Beverages</a>
+				<ul>		
+					<li><a href="#">Burrowing gobies</a></li>
+					<li><a href="#">Dartfishes</a></li>
+
+					<li><a href="#">Eellike gobies</a></li>
+					<li><a href="#">Gobies</a></li>
+					<li><a href="#">Loach gobies</a></li>
+					<li><a href="#">Odontobutidae</a></li>
+		
+					<li><a href="#">Sandfishes</a></li>
+					<li><a href="#">Schindleriidae</a></li>
+
+					<li><a href="#">Sleepers</a></li>
+					<li><a href="#">Xenisthmidae</a></li>
+				</ul>
+			</li>
+		
+            <li><a href="#" class="parent">Confectionary</a>
+				<ul>
+					<li><a href="#">Bread & Bakery</a>		
+						<ul>
+							<li><a href="#">Bread</a></li>
+							<li><a href="#">Buns & Bakery</a></li>
+							<li><a href="#">Cakes</a></li>
+						</ul>
+					</li>
+
+                    <li><a href="#">Bread & Bakery</a>		
+						<ul>
+							<li><a href="#">Bread</a></li>
+							<li><a href="#">Buns & Bakery</a></li>
+							<li><a href="#">Cakes</a></li>
+						</ul>
+					</li>
+                </ul>
+            </li>
+
+            <li><a href="#" class="parent">Processed Food</a>
+				<ul>
+					<li><a href="#">Bread & Bakery</a>		
+						<ul>
+							<li><a href="#">Bread</a></li>
+							<li><a href="#">Buns & Bakery</a></li>
+							<li><a href="#">Cakes</a></li>
+						</ul>
+					</li>
+
+                    <li><a href="#">Bread & Bakery</a>		
+						<ul>
+							<li><a href="#">Bread</a></li>
+							<li><a href="#">Buns & Bakery</a></li>
+							<li><a href="#">Cakes</a></li>
+						</ul>
+					</li>
+                </ul>
+            </li>
+
+            <li><a href="#" class="parent">Personal Care</a>
+				<ul>
+					<li><a href="#">Bread & Bakery</a>		
+						<ul>
+							<li><a href="#">Bread</a></li>
+							<li><a href="#">Buns & Bakery</a></li>
+							<li><a href="#">Cakes</a></li>
+						</ul>
+					</li>
+
+                    <li><a href="#">Bread & Bakery</a>		
+						<ul>
+							<li><a href="#">Bread</a></li>
+							<li><a href="#">Buns & Bakery</a></li>
+							<li><a href="#">Cakes</a></li>
+						</ul>
+					</li>
+                </ul>
+            </li>
+
+            <li><a href="#" class="parent">House Holds</a>
+				<ul>
+					<li><a href="#">Bread & Bakery</a>		
+						<ul>
+							<li><a href="#">Bread</a></li>
+							<li><a href="#">Buns & Bakery</a></li>
+							<li><a href="#">Cakes</a></li>
+						</ul>
+					</li>
+
+                    <li><a href="#">Bread & Bakery</a>		
+						<ul>
+							<li><a href="#">Bread</a></li>
+							<li><a href="#">Buns & Bakery</a></li>
+							<li><a href="#">Cakes</a></li>
+						</ul>
+					</li>
+                </ul>
+            </li>
+
+            <li><a href="#" class="parent">Fruits & Vegetables</a>
+				<ul>
+					<li><a href="#">Bread & Bakery</a>		
+						<ul>
+							<li><a href="#">Bread</a></li>
+							<li><a href="#">Buns & Bakery</a></li>
+							<li><a href="#">Cakes</a></li>
+						</ul>
+					</li>
+
+                    <li><a href="#">Bread & Bakery</a>		
+						<ul>
+							<li><a href="#">Bread</a></li>
+							<li><a href="#">Buns & Bakery</a></li>
+							<li><a href="#">Cakes</a></li>
+						</ul>
+					</li>
+                </ul>
+            </li>
+	 </ul>
+     </div>
+     <!-- END Menu -->
+    </td>
+    </tr>
+
+    <tr><td>    
+     <div>
+        <asp:ContentPlaceHolder ID="cphMasterBody" runat="server">        
+        </asp:ContentPlaceHolder>
+     </div>
+    </td></tr>
+
+    <tr>
+        <td style="text-align:center; vertical-align:middle;" class="all-round-corner">
+            <a style="text-decoration:none;" href="#">Home</a> |
+            <a style="text-decoration:none;" href="#">About Us</a> |
+            <a style="text-decoration:none;" href="#">Career</a> |
+            <a style="text-decoration:none;" href="#">Contact Us</a> 
+        </td>
+    </tr>
+
+    <tr>
+    <td style="vertical-align:middle;" class="all-round-corner">
+        Footer Links
+    </td>
+    </tr>
+
+    </table>
+    </div>
+</body>
+
+</html>

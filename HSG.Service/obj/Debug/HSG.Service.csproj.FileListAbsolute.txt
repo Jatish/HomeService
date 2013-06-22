@@ -1,0 +1,10 @@
+D:\Projects\HomeService-Grocery\HSG.Service\bin\HSG.Service.dll
+D:\Projects\HomeService-Grocery\HSG.Service\bin\HSG.Service.pdb
+D:\Projects\HomeService-Grocery\HSG.Service\obj\Debug\ResolveAssemblyReference.cache
+D:\Projects\HomeService-Grocery\HSG.Service\obj\Debug\HSG.Service.dll
+D:\Projects\HomeService-Grocery\HSG.Service\obj\Debug\HSG.Service.pdb
+C:\Chintu\Projects\Home Service\Application\HomeService-Grocery\HSG.Service\bin\HSG.Service.dll
+C:\Chintu\Projects\Home Service\Application\HomeService-Grocery\HSG.Service\bin\HSG.Service.pdb
+C:\Chintu\Projects\Home Service\Application\HomeService-Grocery\HSG.Service\obj\Debug\HSG.Service.csprojResolveAssemblyReference.cache
+C:\Chintu\Projects\Home Service\Application\HomeService-Grocery\HSG.Service\obj\Debug\HSG.Service.dll
+C:\Chintu\Projects\Home Service\Application\HomeService-Grocery\HSG.Service\obj\Debug\HSG.Service.pdb
