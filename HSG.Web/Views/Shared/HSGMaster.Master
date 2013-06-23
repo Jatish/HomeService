@@ -24,8 +24,13 @@
         }
 
         $(document).ready(function () {
-            $("#liContacUs").click(function () {
+            $("#liContacUs").click(function (event) {
                 if ($("#contactForm").is(":hidden")) {
+                    $('#contactForm').css('left', event.pageX);
+                    $('#contactForm').css('top', event.pageY);
+                    //$('#contactForm').css('display', 'inline');
+                    $("#contactForm").css("position", "absolute");
+                    $("#contactForm").css("z-index", "50");
                     $("#contactForm").slideDown("slow");
                 }
                 else {
@@ -58,7 +63,7 @@
                 <span id="messageSent">Your message has been sent successfully!</span>
             </fieldset>
         </div>
-        <div id="contactLink"></div>
+        <%--<div id="contactLink"></div>--%>
     </div>
     <table id="tblHeader">
     <tr>
