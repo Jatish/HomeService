@@ -152,17 +152,17 @@
 
 /* Sliding Contact Us */
 
-            #contactFormContainer
+            /*#contactFormContainer
             {
                position:absolute;
                left:800px;
                float:right;
                z-index:50;
                padding-top:5px;
-            }
+            }*/
             #contactForm
             {
-               height:250px;
+               height:270px;
                width:280px;
                background-image:url('../Images/ContactUs/contact-us-bg.jpg');
                display:none;
