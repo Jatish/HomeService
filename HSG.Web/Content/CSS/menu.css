@@ -64,10 +64,11 @@ div.menu.ie6 a {
     border-color: #171717;
     filter: chroma(color=#171717);
 }
-div.menu li:hover>a {
+div.menu li:hover > a
+{
     border: 1px solid rgb(14,68,85);
     border-bottom-color: rgb(24,88,115);
-    background: rgb(24,88,115);
+    background: rgb(51, 51, 51);
 }
 div.menu li:hover>a span {
     color: #fff;
@@ -130,14 +131,15 @@ div.menu ul ul li a {
 div.menu ul ul li ul {
     z-index: 20;
 }
-div.menu ul ul {
+div.menu ul ul
+{
     display: block;
     position: absolute;
     top: 40px;
     left: -999em;
     width: 160px;
     padding: 5px 0 0 0;
-    background: rgb(24,88,115);
+    background: rgb(51, 51, 51);
     border: 1px solid rgb(14,68,85);
     margin-top: 1px;
 }
