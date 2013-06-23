@@ -149,3 +149,75 @@
         }
 
 /* Search Box Styles END */
+
+/* Sliding Contact Us */
+
+            #contactFormContainer
+            {
+               position:absolute;
+               left:800px;
+               float:right;
+               z-index:50;
+               padding-top:5px;
+            }
+            #contactForm
+            {
+               height:250px;
+               width:280px;
+               background-image:url('../Images/ContactUs/contact-us-bg.jpg');
+               display:none;
+            }
+            
+            #contactForm fieldset
+            {
+               padding:10px;               
+               border:none;
+            }      
+            #contactForm label
+            {
+               display:block;
+               color:#00BFFF;
+            }      
+            #contactForm input[type=text]
+            {
+               display:block;
+               border:solid 1px #4d3a24;
+               width:100%;
+               margin-bottom:10px;
+               height:18px;
+            }  
+            #contactForm textarea
+            {
+               display:block;
+               border:solid 1px #4d3a24;
+               width:100%;
+               margin-bottom:10px;
+            }  
+            #contactForm input[type=submit]
+            {
+               border:solid 1px #23150c;
+               background-color: #999;
+               color: #fff;
+               padding:5px;
+               -webkit-border-radius: 5px 5px 5px 5px;
+               -webkit-border-radius: 5px 5px 5px 5px;
+               border-radius: 5px 5px 5px 5px;  
+            }                
+            #contactLink
+            {
+               height:25px;
+               width:150px;
+               background-image:url('../Images/ContactUs/slidein_button.png');
+               display:block;
+               cursor:pointer;
+               -webkit-border-radius: 0px 0px 5px 5px;
+               -webkit-border-radius: 0px 0px 5px 5px;
+               border-radius: 0px 0px 5px 5px;               
+            }
+            #messageSent
+            {
+               color:#ff9933;
+               display:none;
+            }
+            
+/* Sliding ContactUs END */
