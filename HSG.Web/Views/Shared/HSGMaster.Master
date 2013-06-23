@@ -18,17 +18,48 @@
     <script type="text/javascript" src="<%= Url.Content("~/Content/Scripts/Carousal/jquery.jcarousel.js?ver=1.0.0") %>"></script>
     <script type="text/javascript" src="<%= Url.Content("~/Content/Scripts/Carousal/jquery.cycle.all.js?ver=1.0.0") %>"></script>
     <script type="text/javascript">
+        function closeForm() {
+            $("#messageSent").show("slow");
+            setTimeout('$("#messageSent").hide();$("#contactForm").slideUp("slow")', 2000);
+        }
+
+        $(document).ready(function () {
+            $("#liContacUs").click(function () {
+                if ($("#contactForm").is(":hidden")) {
+                    $("#contactForm").slideDown("slow");
+                }
+                else {
+                    $("#contactForm").slideUp("slow");
+                }
+            });
+        });
+
     </script>
     
-    <asp:ContentPlaceHolder ID="cphMasterHead" runat="server">        
+    <asp:ContentPlaceHolder ID="cphMasterHead" runat="server">    
+        
     </asp:ContentPlaceHolder>
 </head>
 
 <body> 
 <div id="main">
     <table width="1050px">
-
     <tr><td>
+    <div id="contactFormContainer">
+        <div id="contactForm">
+            <fieldset>
+                <label for="Name">Name *</label>
+                <input id="name" type="text" />
+                <label for="Email">Email address *</label>
+                <input id="Email" type="text" />
+                <label for="Message">Your message *</label>
+                <textarea id="Message" rows="3" cols="20"></textarea>
+                <input name="submit" id="sendMail" onclick="closeForm()" type="submit" />
+                <span id="messageSent">Your message has been sent successfully!</span>
+            </fieldset>
+        </div>
+        <div id="contactLink"></div>
+    </div>
     <table id="tblHeader">
     <tr>
         <td rowspan="2" style="width:130px; height:130px;"><img src="../../Content/Images/Logo-HS.png" alt="No Image" width="100%" /></td>
@@ -53,9 +84,9 @@
                         </ul>
                     </li>
 					<li><a href="#">SignUp</a></li>
-					<li><a href="#">ContactUs</a></li>
-			</ul>
-            </div>
+					<li id="liContacUs"><a href="#">ContactUs</a></li>
+                 </ul>
+            </div>     
         </td>
     </tr>
     <tr>
