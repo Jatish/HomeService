@@ -28,20 +28,27 @@
     text-align: center;
     line-height: 42px;
     border-width: 0;
-    background-color: #999;
+    background-color: #333333;
     -webkit-border-radius: 5px 5px 5px 5px;
     -moz-border-radius: 5px 5px 5px 5px;
     border-radius: 5px 5px 5px 5px;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 .list-heading
 {
     -webkit-border-radius: 5px 5px 0px 0px;
-    -webkit-border-radius: 5px 5px 0px 0px;
+    -moz-border-radius: 5px 5px 0px 0px;
     border-radius: 5px 5px 0px 0px;    
     background: #F0F6F9;
     border: 1px solid #346F97;
+}
+
+.list-heading a
+{
+    text-decoration: none;
+    float: right;
+    margin-right: 5px auto;
 }
 
 .list-body
