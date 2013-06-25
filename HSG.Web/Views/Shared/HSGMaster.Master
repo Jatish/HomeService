@@ -11,13 +11,19 @@
     <link rel="stylesheet" type="text/css" href="<%= Url.Content("~/Content/CSS/menu.css?ver=1.0.0") %>" />
     <link rel="stylesheet" type="text/css" href="<%= Url.Content("~/Content/CSS/Slider/bjqs.css?ver=1.0.0") %>" />
     <link rel="stylesheet" type="text/css" href="<%= Url.Content("~/Content/CSS/carousal.css?ver=1.0.0") %>" />
+    <link rel="stylesheet" type="text/css" href="<%= Url.Content("~/Content/CSS/bn/bn.css?ver=1.0.0") %>" />
 
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/Default/jquery-1.7.1.min.js?ver=1.0.0") %>"></script>
     <script type="text/javascript" src="<%= Url.Content("~/Content/Scripts/menu.js?ver=1.0.0") %>"></script>
     <script type="text/javascript" src="<%= Url.Content("~/Content/Scripts/Slider/bjqs-1.3.min.js?ver=1.0.0") %>"></script>
     <script type="text/javascript" src="<%= Url.Content("~/Content/Scripts/Carousal/jquery.jcarousel.js?ver=1.0.0") %>"></script>
+    <script type="text/javascript" src="<%= Url.Content("~/Content/Scripts/Carousal/jquery.easing.1.3.js?ver=1.0.0") %>"></script>
     <script type="text/javascript" src="<%= Url.Content("~/Content/Scripts/Carousal/jquery.cycle.all.js?ver=1.0.0") %>"></script>
     <script type="text/javascript">
+
+        var jsonAppData = { ContextPath: '', CurrentView: '', AcademicYear: '', UserProfileID: '', InstanceID: '', CurrentAction: '', PageSize: '', NoOfSlices: '', DistrictShortName: '' };
+        jsonAppData.ContextPath = '<%= Url.Content("~/") %>'; 
+
         function closeForm() {
             $("#messageSent").show("slow");
             setTimeout('$("#messageSent").hide();$("#contactForm").slideUp("slow")', 2000);
@@ -36,8 +42,12 @@
                 else {
                     $("#contactForm").slideUp("slow");
                 }
-            });
+            });            
         });
+
+        function redirectTo(strPath) {
+            window.location = jsonAppData.ContextPath + strPath;
+        }
 
     </script>
     
@@ -73,7 +83,7 @@
                 <ul class="menu">		
 					<li><a href="#">Home</a></li>
 					<li><a href="#">About</a></li>
-					<li><a href="#">Account</a></li>
+					<li><a href="javascript:void(0);" onclick="redirectTo('User/MyAccount');">Account</a></li>
 					<li><a href="#">WishList</a></li>
 					<li><a href="#">Login</a>
                         <ul>
