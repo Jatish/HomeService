@@ -127,16 +127,31 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\CSS\bn\bn.css" />
     <Content Include="Content\CSS\HSG.css" />
     <Content Include="Content\CSS\carousal.css" />
     <Content Include="Content\CSS\Slider\bjqs.css" />
     <Content Include="Content\Documents\RequiredInfo.htm" />
+    <Content Include="Content\Images\bn\back.png" />
+    <Content Include="Content\Images\bn\bg.png" />
+    <Content Include="Content\Images\bn\bg_camera.png" />
+    <Content Include="Content\Images\bn\bg_fav.png" />
+    <Content Include="Content\Images\bn\bg_home.png" />
+    <Content Include="Content\Images\bn\bg_shop.png" />
+    <Content Include="Content\Images\bn\bg_user.png" />
+    <Content Include="Content\Images\bn\camera.png" />
+    <Content Include="Content\Images\bn\fav.png" />
+    <Content Include="Content\Images\bn\home.png" />
+    <Content Include="Content\Images\bn\shop.png" />
+    <Content Include="Content\Images\bn\title.png" />
+    <Content Include="Content\Images\bn\user.png" />
     <Content Include="Content\Images\Carousal\1.jpg" />
     <Content Include="Content\Images\Carousal\10.jpg" />
     <Content Include="Content\Images\Carousal\2.jpg" />
@@ -157,6 +172,7 @@
     <Content Include="Content\Images\Slider\banner01.jpg" />
     <Content Include="Content\Images\Slider\banner02.jpg" />
     <Content Include="Content\Images\Slider\banner03.jpg" />
+    <Content Include="Content\Scripts\bn\jquery.easing.1.3.js" />
     <Content Include="Content\Scripts\Carousal\jquery.jcarousel.js" />
     <Content Include="Content\CSS\menu.css" />
     <Content Include="Content\Images\dock-bg.gif" />
@@ -176,6 +192,9 @@
     <Content Include="Scripts\HSG\ServerInterface.js" />
     <Content Include="Scripts\HSG\Service.js" />
     <Content Include="Views\Home\Index.aspx" />
+    <Content Include="Views\Home\Welcome.aspx" />
+    <Content Include="Views\Catalog\ProductListView.aspx" />
+    <Content Include="Views\User\MyAccount.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -210,8 +229,6 @@
     <Folder Include="Views\Marketing\" />
     <Folder Include="Views\Notification\" />
     <Folder Include="Views\Order\" />
-    <Folder Include="Views\Product\" />
-    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
