@@ -51,6 +51,15 @@
                     scroll: 2,
                     initCallback: mycarousel_initCallback
                 });
+
+                jQuery('#ulCareouselNewProducts').jcarousel({
+                    vertical: true,
+                    auto: 2,
+                    wrap: 'last',
+                    visible: 1,
+                    scroll: 1,
+                    initCallback: mycarousel_initCallback
+                });
             });
 
         });
@@ -78,11 +87,31 @@
                     <td>
                         <div class="list-heading">New Products:</div>
                         <div id="divTrans" style="height:120px;" class="list-body">
-                            <a href="javascript:void(0);"><img src="http://static.flickr.com/66/199481236_dc98b5abb3_s.jpg" width="75px" height="75px" alt="" /></a>
-                            <a href="javascript:void(0);"><img src="http://static.flickr.com/66/199481236_dc98b5abb3_s.jpg" alt="" /></a>
-                            <a href="javascript:void(0);"><img src="http://static.flickr.com/66/199481236_dc98b5abb3_s.jpg" alt="" /></a>
-                            
-                        </div>
+                            <ul id="ulCareouselNewProducts" class="jcarousel-skin-tango">
+                                <li>
+                                    <a href="javascript:void(0);"><img src="../../Content/Images/Carousal/1.jpg" alt="" /></a>
+                                    <p class="text">Category 1</p>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);"><img src="http://static.flickr.com/75/199481072_b4a0d09597_s.jpg" alt="" /></a>
+                                    <p class="text">Category 2</p>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);"><img src="http://static.flickr.com/57/199481087_33ae73a8de_s.jpg" alt="" /></a>
+                                    <p class="text">Category 3</p>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);"><img src="http://static.flickr.com/77/199481108_4359e6b971_s.jpg" alt="" /></a>
+                                    <p class="text">Category 4</p>
+                                </li>
+                                <li><a href="javascript:void(0);"><img src="http://static.flickr.com/58/199481143_3c148d9dd3_s.jpg" alt="" /></a></li>
+                                <li><a href="javascript:void(0);"><img src="http://static.flickr.com/72/199481203_ad4cdcf109_s.jpg" alt="" /></a></li>
+                                <li><a href="javascript:void(0);"><img src="http://static.flickr.com/58/199481218_264ce20da0_s.jpg" alt="" /></a></li>
+                                <li><a href="javascript:void(0);"><img src="http://static.flickr.com/69/199481255_fdfe885f87_s.jpg" alt="" /></a></li>
+                                <li><a href="javascript:void(0);"><img src="http://static.flickr.com/60/199480111_87d4cb3e38_s.jpg" alt="" /></a></li>
+                                <li><a href="javascript:void(0);"><img src="http://static.flickr.com/70/229228324_08223b70fa_s.jpg" alt="" /></a></li>
+                           </ul>
+                       </div>                            
                     </td>
                 </tr>
                 <tr>
