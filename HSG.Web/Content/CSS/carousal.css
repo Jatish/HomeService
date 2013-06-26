@@ -16,9 +16,9 @@
 }
 
 .jcarousel-skin-tango .jcarousel-container-vertical {
-    width: 75px;
-    height: 245px;
-    padding: 40px 20px;
+    width: 50%;
+    height: 108px;
+    padding: 5px 5px;
 }
 
 .jcarousel-skin-tango .jcarousel-clip {
@@ -31,8 +31,8 @@
 }
 
 .jcarousel-skin-tango .jcarousel-clip-vertical {
-    width:  75px;
-    height: 245px;
+    width:  85px;
+    height: 75px;
 }
 
 .jcarousel-skin-tango .jcarousel-item {
@@ -158,8 +158,8 @@
     position: absolute;
     bottom: 5px;
     left: 43px;
-    width: 32px;
-    height: 32px;
+    width: 0px;
+    height: 0px;
     cursor: pointer;
     background: transparent url(../Images/Carousal/next-prev/next-vertical.png) no-repeat 0 0;
 }
@@ -185,8 +185,8 @@
     position: absolute;
     top: 5px;
     left: 43px;
-    width: 32px;
-    height: 32px;
+    width: 0px;
+    height: 0px;
     cursor: pointer;
     background: transparent url(../Images/Carousal/next-prev/prev-vertical.png) no-repeat 0 0;
 }
