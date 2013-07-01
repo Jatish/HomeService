@@ -3,13 +3,7 @@
 <asp:Content ID="contentHead" ContentPlaceHolderID="cphMasterHead" runat="server">
     <script type="text/javascript">
         jQuery(document).ready(function ($) {
-
-            $('#banner-fade').bjqs({
-                height: 280,
-                width: 720,
-                responsive: true
-            });
-
+        
             // To hide the digital sign by the menu manufacturer.
             $("a").each(function (index) {
                 if ($(this).text().toString().indexOf("No") > -1) {
