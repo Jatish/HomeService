@@ -86,3 +86,31 @@ function postData(strUrl, arrParams, bIsCache, bIsAsync, bShowLoadPnl, func) {
     }
     return objResponse;
 }
+
+function updateServiceInformation(jsonHSGServices) {
+    //    if (!isValidSession()) {
+    //        redirectToDefault();
+    //    }
+    //    else {
+    jsonHSGServices.Home = "http://localhost/hsg.service.devqa/Catalog/CatalogService.svc";
+    jsonHSGServices.Catalog = "http://localhost/hsg.service.devqa/Home/HomeService.svc";
+    jsonHSGServices.Order = "http://localhost/hsg.service.devqa/Order/OrderService.svc";
+    jsonHSGServices.Marketing = "http://localhost/hsg.service.devqa/Marketing/MarketingService.svc";
+    jsonHSGServices.User = "http://localhost/hsg.service.devqa/User/UserService.svc";
+    //    }
+}
+
+/*
+* This method loads partial views.
+*/
+function loadPartialView(url) {
+    jQuery.ajax({
+        type: 'GET',
+        url: jsonAppData.ContextPath + url,
+        async: false,
+        success: function (result) {
+            $("#divMainContainer").html(result);
+            $("#divTitle").hide();
+        }
+    });
+}
