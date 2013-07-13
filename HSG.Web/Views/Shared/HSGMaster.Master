@@ -45,10 +45,12 @@
             });            
         });
 
+        /*
+        * This method is used to redirect the user to the file name provided as parameter value passed        
+        */
         function redirectTo(strPath) {
             window.location = jsonAppData.ContextPath + strPath;
         }
-
     </script>
     
     <asp:ContentPlaceHolder ID="cphMasterHead" runat="server">    
