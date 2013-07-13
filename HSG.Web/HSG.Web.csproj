@@ -126,6 +126,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -185,6 +186,7 @@
     <Content Include="Content\Scripts\Slider\bjqs-1.3.min.js" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\Default\jquery-1.7.1.min.js" />
+    <Content Include="Scripts\HSG\Admin\Admin.js" />
     <Content Include="Scripts\HSG\Catalog\Catalog.js" />
     <Content Include="Scripts\HSG\GHSScripts.js" />
     <Content Include="Scripts\HSG\Home\Home.js" />
