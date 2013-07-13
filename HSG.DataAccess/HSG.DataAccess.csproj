@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Base\DBBase.cs" />
     <Compile Include="Base\DBConstants.cs" />
+    <Compile Include="CatalogDA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
