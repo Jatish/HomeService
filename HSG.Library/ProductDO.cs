@@ -74,7 +74,7 @@ namespace HSG.Library
         /// <summary>
         ///
         /// </summary>
-        private DateTime? _dtmModifiedDate;
+        private bool _bModificationStatus;
 
         /// <summary>
         ///
@@ -104,7 +104,7 @@ namespace HSG.Library
             this._dtmCreatedDate = DateTime.MinValue;
             this._iCreatedBy = -1;
             this._dtmModifiedDate = DateTime.MinValue;
-            this._iModifiedBy = -1;
+            this._bModificationStatus = 0;
         }
 
         #endregion
@@ -245,7 +245,7 @@ namespace HSG.Library
         ///
         /// </value>
         /// <c>Version 1.0</c>
-        public DateTime? ModifiedDate
+        public bool ModificationStatus
         {
             get { return this._dtmModifiedDate; }
             set { this._dtmModifiedDate = value; }
