@@ -195,7 +195,6 @@
     <Content Include="Scripts\HSG\Service.js" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Home\Welcome.aspx" />
-    <Content Include="Views\Catalog\ProductListView.aspx" />
     <Content Include="Views\User\MyAccount.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -224,6 +223,7 @@
     <Folder Include="Scripts\HSG\Notification\" />
     <Folder Include="Scripts\HSG\Order\" />
     <Folder Include="Scripts\HSG\User\" />
+    <Folder Include="Views\Catalog\" />
     <Folder Include="Views\Common\" />
     <Folder Include="Views\Inventory\" />
     <Folder Include="Views\Marketing\" />
