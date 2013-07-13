@@ -1,4 +1,4 @@
-﻿function buildHomePageContent(){
+﻿function buildHomePageContent(vHomePageData){
     var s= '';
     s += '<table width="100%">';
     s += '<tr>';
