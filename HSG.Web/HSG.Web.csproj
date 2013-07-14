@@ -139,6 +139,7 @@
     <Content Include="Content\CSS\HSG.css" />
     <Content Include="Content\CSS\carousal.css" />
     <Content Include="Content\CSS\Slider\bjqs.css" />
+    <Content Include="Content\CSS\HSG-admin.css" />
     <Content Include="Content\Documents\RequiredInfo.htm" />
     <Content Include="Content\Images\bn\back.png" />
     <Content Include="Content\Images\bn\bg.png" />
