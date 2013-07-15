@@ -3,6 +3,7 @@ using System.Data;
 using HSG.DataAccess.Base;
 using System.Data.SqlClient;
 using HSG.Library;
+using System;
 
 namespace HSG.DataAccess
 {
@@ -13,7 +14,7 @@ namespace HSG.DataAccess
         /// <summary>
         /// This method is used to get all the products from the catalog.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Product fetched as DataSet.</returns>
         public DataSet GetAllProducts()
         {
             logger.Debug("Method GetAllProducts called.");
@@ -24,33 +25,53 @@ namespace HSG.DataAccess
             return DBBase.Execute.ExecuteDataset(objSqlCommand);
         }
 
-        public int UpdateProduct( ProductDO product)
+        /// <summary>
+        /// This method is to add/update product to the database Product table.
+        /// </summary>
+        /// <param name="product">Product data as ProductDO class object.</param>
+        /// <returns>ProductID as integer.</returns>
+        public int SaveProduct( ProductDO objProduct)
         {
             try
             {
-                SqlCommand sqlCommand = new SqlCommand();
-                sqlCommand.CommandType = CommandType.StoredProcedure;
-                sqlCommand.Parameters.Add("@PkProductId", SqlDbType.Int, int.MaxValue).Value = product.ProductID;
-                sqlCommand.Parameters.Add("@FkProductTypeId", SqlDbType.SmallInt, int.MaxValue).Value = product.ProductTypeID;
-                sqlCommand.Parameters.Add("@FkCatagoryId", SqlDbType.SmallInt, int.MaxValue).Value = product.CategoryID;
-                sqlCommand.Parameters.Add("@FkBrandId", SqlDbType.SmallInt, int.MaxValue).Value = product.BrandID;
-                sqlCommand.Parameters.Add("@FkProductGroupId", SqlDbType.SmallInt, int.MaxValue).Value = 0;
-                sqlCommand.Parameters.Add("@FkProductAvailableStatusId", SqlDbType.SmallInt, int.MaxValue).Value = product.ProductAvailableStatusID;
-                sqlCommand.Parameters.Add("@ProductName", SqlDbType.VarChar, 500).Value = product.Name;
-                sqlCommand.Parameters.Add("@ProcuctBatchNumber", SqlDbType.VarChar, 50).Value = product.BatchNo;
-                sqlCommand.Parameters.Add("@ExpirationDate", SqlDbType.DateTime).Value =  ;
-                sqlCommand.Parameters.Add("@Quantity", SqlDbType.Decimal).Value = product.OnHandQuantity;
-                sqlCommand.Parameters.Add("@PurchasePrice", SqlDbType.Decimal).Value = product.PurchasePrice;
-                sqlCommand.Parameters.Add("@SellingPrice", SqlDbType.Decimal).Value = product.SellingPrice;
-                sqlCommand.Parameters.Add("@Image", SqlDbType.VarChar).Value = product.ImagePath;
-                sqlCommand.Parameters.Add("@ModifiedBy", SqlDbType.Int).Value = product.ModifiedBy;
-                sqlCommand.Parameters.Add("@ModificationStatus", SqlDbType.Int, int.MaxValue).Value = product.ModificationStatus;
+                logger.Debug("Method SaveProduct - hsgProductSave.");
+                SqlCommand objSqlCommand = null;
+                objSqlCommand = DBBase.Execute.GetCommandObject();
+                objSqlCommand.CommandText = "hsgProductSave";// procedure name needs to be changed.
+                objSqlCommand.CommandType = CommandType.StoredProcedure;
 
+                #region Add Parameters with Value
+
+                if (objProduct.ProductID != -1)
+                    objSqlCommand.Parameters.AddWithValue("@PkProductId", objProduct.ProductID);
+                else
+                    objSqlCommand.Parameters.AddWithValue("@CreatedBy", objProduct.CreatedBy);
+
+                objSqlCommand.Parameters.AddWithValue("@FkCatagoryId", objProduct.CategoryID);
+                objSqlCommand.Parameters.AddWithValue("@FkProductTypeId", objProduct.ProductTypeID);
+                objSqlCommand.Parameters.AddWithValue("@FkBrandId", objProduct.BrandID);
+                objSqlCommand.Parameters.AddWithValue("@FkProductGroupId", 0);
+                objSqlCommand.Parameters.AddWithValue("@FkProductAvailableStatusId", objProduct.ProductAvailableStatusID);
+                objSqlCommand.Parameters.AddWithValue("@ProductName", objProduct.Name);
+                objSqlCommand.Parameters.AddWithValue("@ProcuctBatchNumber", objProduct.BatchNo);
+                objSqlCommand.Parameters.AddWithValue("@Quantity", objProduct.OnHandQuantity);
+                objSqlCommand.Parameters.AddWithValue("@ExpirationDate", DateTime.MinValue);
+                objSqlCommand.Parameters.AddWithValue("@PurchasePrice", objProduct.PurchasePrice);
+                objSqlCommand.Parameters.AddWithValue("@SellingPrice", objProduct.SellingPrice);
+                objSqlCommand.Parameters.AddWithValue("@Image", objProduct.ImagePath);
+                objSqlCommand.Parameters.AddWithValue("@ModifiedBy", objProduct.ModifiedBy);
+                objSqlCommand.Parameters.AddWithValue("@ModificationStatus", objProduct.ModificationStatus);
+
+                #endregion
+
+                objProduct.ProductID = Convert.ToInt32(DBBase.Execute.ExecuteScalar(objSqlCommand));
             }
-            catch
-            { }
+            catch(Exception objExc)
+            {
+                logger.Error("Method SaveProduct - Error " + objExc.ToString());
+            }
+
+            return objProduct.ProductID;
         }
-
-
     }
 }
