@@ -6,7 +6,6 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="cphMasterBody" runat="server">
 
-<h5></h5>
 <div id="divAdminMainContent">
 </div>
 
