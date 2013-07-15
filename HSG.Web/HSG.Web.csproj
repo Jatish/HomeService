@@ -212,14 +212,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\Common\" />
-    <Folder Include="Controllers\Home\" />
-    <Folder Include="Controllers\Inventory\" />
-    <Folder Include="Controllers\Marketing\" />
-    <Folder Include="Controllers\Notification\" />
-    <Folder Include="Controllers\Order\" />
-    <Folder Include="Controllers\Product\" />
-    <Folder Include="Controllers\User\" />
     <Folder Include="Models\" />
     <Folder Include="Scripts\HSG\Common\" />
     <Folder Include="Scripts\HSG\Inventory\" />
