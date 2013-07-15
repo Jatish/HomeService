@@ -64,11 +64,6 @@ namespace HSG.Library
         /// <summary>
         /// 
         /// </summary>
-        private DateTime? _dtmCreatedDate;
-
-        /// <summary>
-        /// 
-        /// </summary>
         private int _iCreatedBy;
 
         /// <summary>
@@ -101,10 +96,8 @@ namespace HSG.Library
             this._dPurchasePrice = -1;
             this._dSellingPrice = -1;
             this._strImagePath = string.Empty;
-            this._dtmCreatedDate = DateTime.MinValue;
             this._iCreatedBy = -1;
-            this._dtmModifiedDate = DateTime.MinValue;
-            this._bModificationStatus = 0;
+            this._bModificationStatus = false;
         }
 
         #endregion
@@ -225,16 +218,6 @@ namespace HSG.Library
         ///
         /// </value>
         /// <c>Version 1.0</c>
-        public DateTime? CreatedDate
-        {
-            get { return this._dtmCreatedDate; }
-            set { this._dtmCreatedDate = value; }
-        }
-
-        /// <value>
-        ///
-        /// </value>
-        /// <c>Version 1.0</c>
         public int CreatedBy
         {
             get { return this._iCreatedBy; }
@@ -247,8 +230,8 @@ namespace HSG.Library
         /// <c>Version 1.0</c>
         public bool ModificationStatus
         {
-            get { return this._dtmModifiedDate; }
-            set { this._dtmModifiedDate = value; }
+            get { return this._bModificationStatus; }
+            set { this._bModificationStatus = value; }
         }
         
         /// <value>
