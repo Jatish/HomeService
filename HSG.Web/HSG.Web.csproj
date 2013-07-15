@@ -196,6 +196,7 @@
     <Content Include="Scripts\HSG\Pager.js" />
     <Content Include="Scripts\HSG\ServerInterface.js" />
     <Content Include="Scripts\HSG\Service.js" />
+    <Content Include="Views\Admin\Index.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Home\Welcome.aspx" />
     <Content Include="Views\User\MyAccount.aspx" />
