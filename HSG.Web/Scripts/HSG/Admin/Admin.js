@@ -144,7 +144,7 @@ function loadProductList(vProducts) {
         $('#tblProducts').empty().append(prepareProductListBody());
         //bind paging div on page load, so passing 1 as current page  
         //BuildPager(CPCount, currPage, 'divPager');
-        //onAutoSuggest('txtSearch', vCoursePlans.AutoSuggest);
+        //onAutoSuggest('txtSearch', vProducts.AutoSuggest);
     } else {
         if (vProducts.ProductsCount <= 0) $('#divProducts').hide();
         $('#divCoursePlans').hide();
@@ -156,8 +156,6 @@ function loadProductList(vProducts) {
 
 /*
 * Function to prepare body of the grid with data as per the page size.
-* @param  CoursePlanLst - List of course plans in the JSON format to load the grid.
-* s1 - Used to store the string with all bank details with in the body of grid
 */
 function prepareProductListBody() {
     var s1 = '';
