@@ -2,7 +2,7 @@
 .admin-main-menu-1 > li 			{list-style-type:none; margin:0; padding:20px; height:270px; display:table-cell; text-align:center; font-size:12px; vertical-align:top}
 .admin-main-menu-1 > li > div		{padding:20px 30px 30px; height:200px; background:#f8f8f8; border:5px solid #fff; cursor:pointer; margin:-2px 0 0 -2px;}
 .admin-main-menu-1 > li > div:hover	{margin:0;}
-.admin-main-menu-1 > li > div > p 	{width:170px; height:94px; margin:0 auto 5px; background:url(../images/stars-12-sprite-icons-1.png) no-repeat;}
+.admin-main-menu-1 > li > div > p 	{width:170px; height:94px; margin:0 auto 5px; background:url() no-repeat;}
 .admin-main-menu-1 > li > div > p.cr {background-position:0px 0px;}
 .admin-main-menu-1 > li > div > p.pdr{background-position:-180px 0px;}
 .admin-main-menu-1 > li > div > h1	{margin:0; line-height:30px; font-size:18px; color:#06C; line-height:40px; font-weight:normal;}
@@ -12,7 +12,7 @@
 .icons-menu-1a > li 					{list-style-type:none; margin:0; padding:20px 20px 0px 20px; height:180px; display:table-cell; text-align:center; font-size:12px; vertical-align:top}
 .icons-menu-1a > li > div				{padding:5px 10px 35px 10px; height:110px; background:#f8f8f8; border:5px solid #fff; cursor:pointer; margin:-2px 0 0 -2px;}
 .icons-menu-1a > li > div:hover			{margin:0;}
-.icons-menu-1a > li > div > p 			{width:120px; height:100px; margin:0 auto; background:url(../images/stars-12-sprite-icons-1.png) no-repeat;}
+.icons-menu-1a > li > div > p 			{width:120px; height:100px; margin:0 auto; background:url() no-repeat;}
 
 .icons-menu-1a > li > div > h1			{margin:0; line-height:35px; font-size:14px; color:#06C; height:35px; font-weight:normal;}
 .icons-menu-1a > li > div > h1.wrap		{line-height:17px;}
