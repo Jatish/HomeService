@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+# Visual Web Developer Express 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HSG.Business", "HSG.Business\HSG.Business.csproj", "{9D2D1F8F-BB67-4652-9565-3EC4A5363E65}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HSG.Library", "HSG.Library\HSG.Library.csproj", "{5D2201BA-9A14-4224-BA67-F7E6EA032C9F}"
@@ -10,6 +10,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HSG.Service", "HSG.Service\HSG.Service.csproj", "{4192E9C9-85DA-419B-A95B-FF8F7325452C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HSG.Web", "HSG.Web\HSG.Web.csproj", "{20A57AE7-937B-48EC-8147-BD332AA16BEE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4192E9C9-85DA-419B-A95B-FF8F7325452C} = {4192E9C9-85DA-419B-A95B-FF8F7325452C}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HSG.Notifier", "HSG.Notifier\HSG.Notifier.csproj", "{DCCC8766-AA0C-460E-AC0A-B2CAEB0DFE62}"
 EndProject
