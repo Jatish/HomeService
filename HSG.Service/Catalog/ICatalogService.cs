@@ -1,17 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
+﻿using HSG.Library;
 using System.ServiceModel;
-using System.Text;
+using System.ServiceModel.Web;
+using System.Collections.Generic;
 
 namespace HSG.Service.Catalog
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "ICatalogService" in both code and config file together.
     [ServiceContract]
     public interface ICatalogService
     {
         [OperationContract]
-        void DoWork();
+        [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.Wrapped, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
+        Dictionary<string, object> GetProducts();
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.Wrapped, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
+        int SaveProduct(ProductDO objProduct);
     }
 }
