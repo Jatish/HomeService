@@ -67,12 +67,12 @@ function loadProductListViewContent() {
     sHtml += '<table width="100%"><tr>';
     sHtml += '<td style="width:50%;"></td>';
     sHtml += '<td style="text-align:right; vertical-align:middle;">';
-    sHtml += '<button id="btnAddNew" class="hsInputStyle" type="button" style="width:80px;"><span>Add New</span></button>&nbsp;';
+    sHtml += '<button id="btnAddNew" class="hsInputStyle" type="button" style="width:80px;" onclick="loadProductAddEditView(-1);" ><span>Add New</span></button>&nbsp;';
     sHtml += '<button id="btnDelectSelected" class="hsInputStyle" type="button" style="width:150px;"><span>Remove Selected</span></button>&nbsp;';
     sHtml += '<button id="btnSelectAll" class="hsInputStyle" type="button" style="width:80px;"><span>Select All</span></button>&nbsp;';
     sHtml += '</td></tr></table>';
 
-    sHtml = '<table class="table-listview tvat alt-rows">';
+    sHtml += '<table class="table-listview tvat alt-rows">';
     sHtml += '<colgroup><col align="left" /><col align="left" /><col align="left" /><col /><col /><col /><col /><col /></colgroup>'
     sHtml += '<tr class="th-1 tvam"><td style="text-align: left;">Product Name</td><td style="text-align: left;">OnHand Quantity</td>';
     sHtml += '<td style="text-align: left;">Created By</td><td>Purchase Price</td><td>Selling Price</td>';
@@ -131,19 +131,26 @@ function prepareProductListBody() {
 /*
 * Function to prepare body of the product add edit view.
 */
-function loadProductAddEditView() {
+function loadProductAddEditView(productID) {
+
+    var hBreadCrumb = document.getElementById("hBreadCrumb");
+    var str = '';
+    str += '<a href="javascript:void(0);" onclick="buildAdminMainPage();">Administration Menu</a> <b>&gt;</b>';
+    str += '<a href="javascript:void(0);" onclick="loadProductManagerContent();">Product Manager</a> <b>&gt;</b>';
+    str += '<a href="javascript:void(0);" onclick="loadProductListViewContent();">Product ListView</a> <b>&gt;</b>' + ((productID != -1) ? 'Edit Product' : 'Create Product');
+    hBreadCrumb.innerHTML = str;
+
     var sHtml = '';
     sHtml += '<table width="100%"><tr>';
     sHtml += '<td style="width:50%;"></td>';
     sHtml += '<td style="text-align:right; vertical-align:middle;">';
     sHtml += '<button id="btnAddNew" class="hsInputStyle" type="button" style="width:80px;"><span>Add New</span></button>&nbsp;';
-    sHtml += '<button id="btnDelectSelected" class="hsInputStyle" type="button" style="width:150px;"><span>Remove Selected</span></button>&nbsp;';
-    sHtml += '<button id="btnSelectAll" class="hsInputStyle" type="button" style="width:80px;"><span>Select All</span></button>&nbsp;';
+    sHtml += '<button id="btnDelectSelected" class="hsInputStyle" type="button" style="width:150px;"><span>Remove</span></button>&nbsp;';
     sHtml += '</td></tr></table>';
     sHtml += '<div id="divProductDetails">';
     sHtml += '<table class="form-table-1 alt-rows">';
     sHtml += '<colgroup>';
-    sHtml += '<col align="left" style="width:120px;" />';
+    sHtml += '<col align="left" style="width:30%;" />';
     sHtml += '<col align="left" />';
     sHtml += '</colgroup>';
     sHtml += '<tbody>';
@@ -155,14 +162,12 @@ function loadProductAddEditView() {
     sHtml += '<td style="text-align: left;"><b>Image:</b></td>';
     sHtml += '<td style="text-align: left;">';
     sHtml += '<input id="flFile" name="file" type="file" style="width:300px;" />';
-    sHtml += '<a id="aFile" onclick="openResource()" style="display:none;" href="javascript:void(0);"></a>';
-    sHtml += '<a id="aRemove" href="javascript:void(0);" class="icon-link icon-delete" style="display: none;"></a>';
     sHtml += '</td>';
     sHtml += '</tr> ';
     sHtml += '<tr class="alt">';
     sHtml += '<td style="text-align: left;"><b>Category:</b></td>';
     sHtml += '<td style="text-align: left;">';
-    sHtml += '<select id="ddlCategory" style="width:200px;" onchange="prepareBody(\'\');"></select>';
+    sHtml += '<select id="ddlCategory" style="width:200px;" onchange="onChangeCategory(\'\');"></select>';
     sHtml += '</td>';
     sHtml += '</tr>';
     sHtml += '<tr id="trType">';
@@ -213,7 +218,65 @@ function loadProductAddEditView() {
     sHtml += '</table>';
     sHtml += '</div>';
     sHtml += '<div class="buttons tac">';
-    sHtml += '<button id="btnSave" class="hsInputStyle" type="button" style="width:80px;" onclick="javascript:saveResource();"><span>Save</span></button>';
+    sHtml += '<button id="btnSave" class="hsInputStyle" type="button" style="width:70px;" onclick="javascript:saveProduct();"><span>Save</span></button>&nbsp;';
+    sHtml += '<button id="btnCancel" class="hsInputStyle" type="button" style="width:70px;" onclick="javascript:loadProductListViewContent();"><span>Cancel</span></button>';
     sHtml += '</div>';
     $('#divAdminMainContent').empty().html(sHtml);
+
+    /* Populate all combo boxes. */
+    // populateCategories(vProducts.Categories);
+    // populateBrands(vProducts.Brands);
+    // populateProductTypes(vProducts.ProductTypes);
+    /* End Populate all combo boxes. */
+
+    /* START populating product details */
+    if (productID != -1) {
+        // write code to populate product details for EDIT mode
+    }
+    /* END populating product details */
+}
+
+function populateCategories(vCategories){
+    var sHTML = '';
+    sHTML += '<option value="0" selected="selected">Select Category</option>';
+    $.each(vJsonResourceData.Subjects, function (iSubjectID, objSubject) {
+        sHTML += '<option value="' + objSubject.Code + '" ' + ((vMode == 'edit' && vJsonResourceData.Resource.SubjectCode == objSubject.Code) ? 'selected=selected' : '') + '>' + objSubject.Label + '</option>';
+    });
+    $('#trSubject').show();
+    $('#ddlSubject').html(sHTML);
+}
+
+function onChangeCategory() {
+    bIsChanged = true;
+    var strSubjectCode = $('#ddlSubject option:selected').val();
+    if (strSubjectCode == 'M') {
+        $('#trGenreCode').hide();
+        applyRowColors();
+    }
+    else if (strSubjectCode == 'E' && $('#ddlClassification option:selected').val() == 'OT') loadGenre();
+}
+
+function populateBrands(vBrands) {
+    var sHTML = '';
+    sHTML += '<option value="0" selected="selected">Select Category</option>';
+    $.each(vJsonResourceData.Subjects, function (iSubjectID, objSubject) {
+        sHTML += '<option value="' + objSubject.Code + '" ' + ((vMode == 'edit' && vJsonResourceData.Resource.SubjectCode == objSubject.Code) ? 'selected=selected' : '') + '>' + objSubject.Label + '</option>';
+    });
+    $('#trSubject').show();
+    $('#ddlSubject').html(sHTML);
+}
+
+function populateProductTypes(vProductTypes) {
+    var sHTML = '';
+    sHTML += '<option value="0" selected="selected">Select Category</option>';
+    $.each(vJsonResourceData.Subjects, function (iSubjectID, objSubject) {
+        sHTML += '<option value="' + objSubject.Code + '" ' + ((vMode == 'edit' && vJsonResourceData.Resource.SubjectCode == objSubject.Code) ? 'selected=selected' : '') + '>' + objSubject.Label + '</option>';
+    });
+    $('#trSubject').show();
+    $('#ddlSubject').html(sHTML);
+}
+
+function saveProduct(productID) {
+    var vProduct = {ProductID:productID, CategoryID:1, ProductTypeID:1, BrandID:1, ProductAvailableStatusID:1, Name:'Name', BatchNo:'batchno', OnHandQuantity:1, PurchasePrice:0, SellingPrice:1, ImagePath:'ImagePath', CreatedBy:1, ModificationStatus:true, ModifiedBy:1 };
+    var vResponse = postData(jsonAppData.ContextPath + 'Catlog/SaveProduct', vProduct, false, false, false);
 }
