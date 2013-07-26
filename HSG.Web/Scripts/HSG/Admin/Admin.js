@@ -33,13 +33,13 @@ function buildAdminMainPage() {
     sHtml += '<li onclick="">';
     sHtml += '<div>';
     sHtml += '<p>';
-    sHtml += '<h1>Coming Soon</h1>';
+    sHtml += '<h1>User Manager</h1>';
     sHtml += '</div>';
     sHtml += '</li>';
     sHtml += '<li onclick="">';
     sHtml += '<div>';
     sHtml += '<p>';
-    sHtml += '<h1>Coming Soon</h1>';
+    sHtml += '<h1>Support</h1>';
     sHtml += '</div>';
     sHtml += '</li>';
     sHtml += '</ul>';
