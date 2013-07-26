@@ -46,6 +46,8 @@
   <ItemGroup>
     <Compile Include="ProductDO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserDO.cs" />
+    <Compile Include="UserPermissionDO.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
