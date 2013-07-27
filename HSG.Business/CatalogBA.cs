@@ -3,6 +3,7 @@ using HSG.Library;
 using System.Data;
 using HSG.DataAccess;
 using System.Collections.Generic;
+using System;
 
 namespace HSG.Business
 {
@@ -20,7 +21,16 @@ namespace HSG.Business
             DataSet dsProducts = new CatalogDA().GetAllProducts();
             if (dsProducts.Tables.Count > 0)
             {
-
+                Dictionary<int, ProductDO> dicProduct = new Dictionary<int, ProductDO>();
+                ProductDO objProduct = new ProductDO();
+                foreach (DataRow drProduct in dsProducts.Tables[0].Rows)
+                {
+                    objProduct.ProductID = Convert.ToInt32(drProduct["PkProductId"]);
+                    objProduct.Name = Convert.ToString(drProduct["ProductName"]);
+                    objProduct.OnHandQuantity = Convert.ToInt32(drProduct["Quantity"]);
+                    dicProduct.Add(objProduct.ProductID, objProduct);
+                }
+                dicProducts.Add("Products", dicProduct);
             }
             return dicProducts;
         }
