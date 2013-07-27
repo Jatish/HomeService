@@ -14,10 +14,10 @@ fnSuccessParams = Contains parameters to pass for the Success function.
 function getData(strUrl, arrParams, bIsCache, bIsAsync, bShowLoadPnl, fnSuccess, fnSuccessParams) {
     var objResponse = null;
     var bIsLoading = ((bShowLoadPnl != undefined) ? bShowLoadPnl : false);
-    var bIsValid = checkSessionValidation();
-    if (!bIsValid)
-        window.location = jsonAppData.ContextPath + jsonAppData.DistrictShortName;
-    else {
+//    var bIsValid = checkSessionValidation();
+//    if (!bIsValid)
+//        window.location = jsonAppData.ContextPath + jsonAppData.DistrictShortName;
+//    else {
         $.ajax({
             cache: ((bIsCache == undefined) ? false : bIsCache),
             type: 'GET',
@@ -38,7 +38,7 @@ function getData(strUrl, arrParams, bIsCache, bIsAsync, bShowLoadPnl, fnSuccess,
                 alert("Error occurred while processing your request. Please try again.");
             }
         });
-    }
+//    }
     return objResponse;
 }
 
@@ -59,10 +59,10 @@ fnSuccessParams = Contains parameters to pass for the Success function.
 function postData(strUrl, arrParams, bIsCache, bIsAsync, bShowLoadPnl, fnSuccess, fnSuccessParams) {
     var objResponse = null;
     var bIsLoading = ((bShowLoadPnl != undefined) ? bShowLoadPnl : false);
-    var bIsValid = checkSessionValidation();
-    if (!bIsValid)
-        window.location = jsonAppData.ContextPath + jsonAppData.DistrictShortName;
-    else {
+//    var bIsValid = checkSessionValidation();
+//    if (!bIsValid)
+//        window.location = jsonAppData.ContextPath + jsonAppData.DistrictShortName;
+//    else {
         $.ajax({
             cache: ((bIsCache == undefined) ? false : bIsCache),
             type: 'POST',
@@ -84,7 +84,7 @@ function postData(strUrl, arrParams, bIsCache, bIsAsync, bShowLoadPnl, fnSuccess
                 alert("Error occurred while processing your request. Please try again.");
             }
         });
-    }
+//    }
     return objResponse;
 }
 
@@ -93,8 +93,8 @@ function updateServiceInformation(jsonHSGServices) {
     //        redirectToDefault();
     //    }
     //    else {
-    jsonHSGServices.Home = "http://localhost/hsg.service.devqa/Catalog/CatalogService.svc";
-    jsonHSGServices.Catalog = "http://localhost/hsg.service.devqa/Home/HomeService.svc";
+    jsonHSGServices.Home = "http://localhost/hsg.service.devqa/Home/HomeService.svc";
+    jsonHSGServices.Catalog = "http://localhost/hsg.service/Catalog/CatalogService.svc";
     jsonHSGServices.Order = "http://localhost/hsg.service.devqa/Order/OrderService.svc";
     jsonHSGServices.Marketing = "http://localhost/hsg.service.devqa/Marketing/MarketingService.svc";
     jsonHSGServices.User = "http://localhost/hsg.service.devqa/User/UserService.svc";
