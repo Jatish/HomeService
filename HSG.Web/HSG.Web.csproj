@@ -208,14 +208,25 @@
     <Content Include="Scripts\HSG\Pager.js" />
     <Content Include="Scripts\HSG\ServerInterface.js" />
     <Content Include="Scripts\HSG\Service.js" />
-    <None Include="Service References\CatalogServiceReference\CatalogService.disco" />
+    <None Include="Service References\CatalogServiceReference\CatalogService1.wsdl" />
+    <None Include="Service References\CatalogServiceReference\CatalogService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CatalogServiceReference\CatalogService31.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CatalogServiceReference\CatalogService32.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\CatalogServiceReference\configuration91.svcinfo" />
     <None Include="Service References\CatalogServiceReference\configuration.svcinfo" />
     <None Include="Service References\CatalogServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Service References\CatalogServiceReference\CatalogService1.disco" />
     <Content Include="Views\Admin\Index.aspx" />
+    <Content Include="Views\Catalog\Index.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Home\Welcome.aspx" />
     <Content Include="Views\Login\Index.aspx" />
@@ -229,7 +240,6 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\Shared\Error.aspx" />
-    <None Include="Service References\CatalogServiceReference\CatalogService.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -240,7 +250,6 @@
     <Folder Include="Scripts\HSG\Notification\" />
     <Folder Include="Scripts\HSG\Order\" />
     <Folder Include="Scripts\HSG\User\" />
-    <Folder Include="Views\Catalog\" />
     <Folder Include="Views\Common\" />
     <Folder Include="Views\Inventory\" />
     <Folder Include="Views\Marketing\" />
@@ -264,11 +273,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\CatalogServiceReference\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\CatalogServiceReference\CatalogService.xsd" />
-    <None Include="Service References\CatalogServiceReference\CatalogService1.xsd" />
-    <None Include="Service References\CatalogServiceReference\CatalogService2.xsd" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
