@@ -278,5 +278,5 @@ function populateProductTypes(vProductTypes) {
 
 function saveProduct(productID) {
     var vProduct = {ProductID:productID, CategoryID:1, ProductTypeID:1, BrandID:1, ProductAvailableStatusID:1, Name:'Name', BatchNo:'batchno', OnHandQuantity:1, PurchasePrice:0, SellingPrice:1, ImagePath:'ImagePath', CreatedBy:1, ModificationStatus:true, ModifiedBy:1 };
-    var vResponse = postData(jsonAppData.ContextPath + 'Catlog/SaveProduct', vProduct, false, false, false);
+    var vResponse = postData(jsonAppData.ContextPath + 'Catalog/SaveProduct', vProduct, false, false, false);
 }
