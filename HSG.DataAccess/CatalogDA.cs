@@ -19,7 +19,7 @@ namespace HSG.DataAccess
         {
             logger.Debug("Method GetAllProducts called.");
             SqlCommand objSqlCommand = new SqlCommand();
-            objSqlCommand.CommandText = "hsgGetAllProducts";
+            objSqlCommand.CommandText = "hsGetProducts";
             objSqlCommand.CommandType = CommandType.StoredProcedure;
 
             return DBBase.Execute.ExecuteDataset(objSqlCommand);
