@@ -58,6 +58,8 @@ function loadProductManagerContent() {
 function loadProductListViewContent() {
     var sHtml = '';
 
+    vProducts = getData(jsonHSGServices.Catalog + "/GetProducts", {}, false, false, false);
+    alert(JSON.stringify(vProducts));
     var hBreadCrumb = document.getElementById("hBreadCrumb");
     var str = '';
     str += '<a href="javascript:void(0);" onclick="buildAdminMainPage();">Administration Menu</a> <b>&gt;</b>';
