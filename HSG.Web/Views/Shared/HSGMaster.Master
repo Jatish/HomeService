@@ -17,6 +17,7 @@
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/Default/jquery-1.7.1.min.js?ver=1.0.0") %>"></script>
     <script type="text/javascript" src="<%= Url.Content("~/Content/Scripts/menu.js?ver=1.0.0") %>"></script>
     <script type="text/javascript" src="<%= Url.Content("~/Content/Scripts/Slider/bjqs-1.3.min.js?ver=1.0.0") %>"></script>
+    <script type="text/javascript" src="<%= Url.Content("~/Scripts/HSG/ServerInterface.js?ver=1.0.0") %>"></script>
     <script type="text/javascript">
 
         var jsonAppData = { ContextPath: '', CurrentView: '', AcademicYear: '', UserProfileID: '', InstanceID: '', CurrentAction: '', PageSize: '', NoOfSlices: '', DistrictShortName: '' };
