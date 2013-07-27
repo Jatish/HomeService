@@ -37,30 +37,32 @@ namespace HSG.DataAccess
                 logger.Debug("Method SaveProduct - hsgProductSave.");
                 SqlCommand objSqlCommand = null;
                 objSqlCommand = DBBase.Execute.GetCommandObject();
-                objSqlCommand.CommandText = "hsgProductSave";// procedure name needs to be changed.
+                objSqlCommand.CommandText = "hsProductSave";// procedure name needs to be changed.
                 objSqlCommand.CommandType = CommandType.StoredProcedure;
 
                 #region Add Parameters with Value
 
                 if (objProduct.ProductID != -1)
+                {
+                    objSqlCommand.Parameters.AddWithValue("@ModifiedBy", objProduct.ModifiedBy);
                     objSqlCommand.Parameters.AddWithValue("@PkProductId", objProduct.ProductID);
+                }
                 else
-                    objSqlCommand.Parameters.AddWithValue("@CreatedBy", objProduct.CreatedBy);
+                    objSqlCommand.Parameters.AddWithValue("@ModifiedBy", objProduct.CreatedBy);
 
-                objSqlCommand.Parameters.AddWithValue("@FkCatagoryId", objProduct.CategoryID);
                 objSqlCommand.Parameters.AddWithValue("@FkProductTypeId", objProduct.ProductTypeID);
+                objSqlCommand.Parameters.AddWithValue("@FkCatagoryId", objProduct.CategoryID);
                 objSqlCommand.Parameters.AddWithValue("@FkBrandId", objProduct.BrandID);
-                objSqlCommand.Parameters.AddWithValue("@FkProductGroupId", 0);
+                objSqlCommand.Parameters.AddWithValue("@FkProductGroupId", 1);
                 objSqlCommand.Parameters.AddWithValue("@FkProductAvailableStatusId", objProduct.ProductAvailableStatusID);
                 objSqlCommand.Parameters.AddWithValue("@ProductName", objProduct.Name);
                 objSqlCommand.Parameters.AddWithValue("@ProcuctBatchNumber", objProduct.BatchNo);
+                objSqlCommand.Parameters.AddWithValue("@ExpirationDate", DateTime.Now);
                 objSqlCommand.Parameters.AddWithValue("@Quantity", objProduct.OnHandQuantity);
-                objSqlCommand.Parameters.AddWithValue("@ExpirationDate", DateTime.MinValue);
                 objSqlCommand.Parameters.AddWithValue("@PurchasePrice", objProduct.PurchasePrice);
                 objSqlCommand.Parameters.AddWithValue("@SellingPrice", objProduct.SellingPrice);
-                objSqlCommand.Parameters.AddWithValue("@Image", objProduct.ImagePath);
-                objSqlCommand.Parameters.AddWithValue("@ModifiedBy", objProduct.ModifiedBy);
-                objSqlCommand.Parameters.AddWithValue("@ModificationStatus", objProduct.ModificationStatus);
+                objSqlCommand.Parameters.AddWithValue("@ImagePath", objProduct.ImagePath);
+                //objSqlCommand.Parameters.AddWithValue("@ModificationStatus", objProduct.ModificationStatus);
 
                 #endregion
 
