@@ -30,6 +30,7 @@
         }
 
         $(document).ready(function () {
+            updateServiceInformation(jsonHSGServices);
             $("#liContacUs").click(function (event) {
                 if ($("#contactForm").is(":hidden")) {
                     $('#contactForm').css('left', event.pageX);
@@ -42,7 +43,7 @@
                 else {
                     $("#contactForm").slideUp("slow");
                 }
-            });            
+            });
         });
 
         /*
