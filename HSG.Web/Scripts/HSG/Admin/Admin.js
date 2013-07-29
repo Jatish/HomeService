@@ -4,7 +4,7 @@
 function buildAdminMainPage() {
     var sHtml = '';
     sHtml += '<ul class="admin-main-menu-1 icons-menu-1a">';
-    sHtml += '<li onclick="loadProductManagerContent();">';
+    sHtml += '<li onclick="loadProductListViewContent();">';
     sHtml += '<div>';
     sHtml += '<p>';
     sHtml += '<h1>Catalog Manager</h1>';
