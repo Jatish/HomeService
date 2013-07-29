@@ -14,6 +14,7 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="cphMasterHead" runat="server">
+<script type="text/javascript" src="<%= Url.Content("~/Scripts/HSG/Pager.js?ver=1.0.0") %>"></script>
 <script type="text/javascript" src="<%= Url.Content("~/Scripts/HSG/Admin/Admin.js?ver=1.0.0") %>"></script>
 <script type="text/javascript" src="<%= Url.Content("~/Scripts/HSG/Catalog/Catalog.js?ver=1.0.0") %>"></script>
     <script type="text/javascript">
