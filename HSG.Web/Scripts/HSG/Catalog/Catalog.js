@@ -1,9 +1,13 @@
 ﻿var vProducts = [];
 
+//Paging related global variables
+var stype = '';
+var psize = 1;
+
 /*
 * This method is used to load ProductManager page content.
 */
-function loadProductManagerContent() {
+function loadCategoryListContent() {
     var sHtml = '';
     sHtml += '<table width="100%"><tr>';
     sHtml += '<td style="width:50%;"></td>';
@@ -59,7 +63,6 @@ function loadProductListViewContent() {
     var sHtml = '';
 
     vProducts = getData(jsonHSGServices.Catalog + "/GetProducts", {}, false, false, false);
-    alert(JSON.stringify(vProducts));
     var hBreadCrumb = document.getElementById("hBreadCrumb");
     var str = '';
     str += '<a href="javascript:void(0);" onclick="buildAdminMainPage();">Administration Menu</a> <b>&gt;</b>';
@@ -74,8 +77,15 @@ function loadProductListViewContent() {
     sHtml += '<button id="btnSelectAll" class="hsInputStyle" type="button" style="width:80px;"><span>Select All</span></button>&nbsp;';
     sHtml += '</td></tr></table>';
 
+    sHtml +='<div class="list-heading">Filter By:</div>';    
+    sHtml += '<table width="100%"><tr>';
+    sHtml += '<td style="width:10%;">Category:&nbsp;</td><td><select id="ddlCategory" style="width:99%;" onchange="onChangeCategory(\'\');"></select></td>';
+    sHtml += '<td style="width:10%; text-align:right;">Product Type:&nbsp;</td><td><select id="ddlType" style="width:99%;" onchange="onChangeTypes();"></select></td>';
+    sHtml += '<td style="width:10%; text-align:right;">Brand:</td><td><select id="ddlBrand" style="width:99%;" onchange="onChangeBrand();"></select></td>';
+    sHtml += '</tr></table>';
+
     sHtml += '<table class="table-listview tvat alt-rows">';
-    sHtml += '<colgroup><col align="left" /><col align="left" /><col align="left" /><col /><col /><col /><col /><col /></colgroup>'
+    sHtml += '<colgroup><col align="left" /><col align="left" /><col align="left" /><col /><col /></colgroup>'
     sHtml += '<tr class="th-1 tvam"><td style="text-align: left;">Product Name</td><td style="text-align: left;">OnHand Quantity</td>';
     sHtml += '<td style="text-align: left;">Created By</td><td>Purchase Price</td><td>Selling Price</td>';
     sHtml += '<td></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>';
@@ -83,30 +93,30 @@ function loadProductListViewContent() {
     //    sHtml += prepareSortRow();
     //    sHtml += '<tr/>';
     sHtml += '<tbody id="tblProducts">';
-    //str += loadProductList(vProducts);
+    str += loadProductList(vProducts);
     sHtml += '</tbody>';
     sHtml += '</table>';
     $('#divAdminMainContent').empty().html(sHtml);
 }
 
 function loadProductList(vProducts) {
-    if (vProducts.length > 0) {
+    //if (vProducts.length > 0) {
         // vProducts.Products;
         // vProducts.ProductsCount;
         $('#divProducts').show();
         //$('#divSearchProduct').show();
         $('#divNoData').hide();
-        $('#tblProducts').empty().append(prepareProductListBody());
+        //$('#tblProducts').empty().append(prepareProductListBody());
         //bind paging div on page load, so passing 1 as current page  
-        //BuildPager(CPCount, currPage, 'divPager');
+        BuildPager(10, 1, 'divPager');
         //onAutoSuggest('txtSearch', vProducts.AutoSuggest);
-    } else {
-        if (vProducts.ProductsCount <= 0) $('#divProducts').hide();
-        $('#divCoursePlans').hide();
-        $('#divPager').hide();
-        $('#divNoData').empty().html('<span style="color:Red">No Products available for this Category.</span>');
-        $('#divNoData').show();
-    }
+//    } else {
+//        if (vProducts.ProductsCount <= 0) $('#divProducts').hide();
+//        $('#divCoursePlans').hide();
+//        $('#divPager').hide();
+//        $('#divNoData').empty().html('<span style="color:Red">No Products available for this Category.</span>');
+//        $('#divNoData').show();
+//    }
 }
 
 /*
@@ -114,7 +124,7 @@ function loadProductList(vProducts) {
 */
 function prepareProductListBody() {
     var s1 = '';
-    $.each(cplst, function (iIndex, item) {
+    $.each(vProducts, function (iIndex, item) {
         s1 += '<tr id="trCoursePlan_' + item.ProductID + '" ' + ((iIndex % 2 == 0) ? 'class="alt"' : '') + '>';
         s1 += '<td style="text-align: left;"><a href="javascript:void(0);" onclick="javascript:onAECoursePlan(' + item.CoursePlanID + ', false);">' + item.ProducName + '</a></td>';
         s1 += '<td style="text-align: left;">' + item.Category + '</td>';
