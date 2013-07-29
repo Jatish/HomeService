@@ -6,6 +6,8 @@ var currPage = 1;
 var fromPage = '';
 var toPage = '';
 var totalItemCount = '';
+var startInd = 0;
+var endInd = 0;
 
 function BuildPager(totalItemCount, currentPage, divPager) {
     if (totalItemCount > jsonAppData.PageSize) {
