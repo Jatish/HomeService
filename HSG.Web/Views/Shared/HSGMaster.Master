@@ -22,7 +22,8 @@
 
         var jsonAppData = { ContextPath: '', CurrentView: '', AcademicYear: '', UserProfileID: '', InstanceID: '', CurrentAction: '', PageSize: '', NoOfSlices: '', DistrictShortName: '' };
         var jsonHSGServices = { Home: '', Catalog: '', Order: '', Marketing: '', User: '' };
-        jsonAppData.ContextPath = '<%= Url.Content("~/") %>'; 
+        jsonAppData.ContextPath = '<%= Url.Content("~/") %>';
+        jsonAppData.PageSize = 1;
 
         function closeForm() {
             $("#messageSent").show("slow");
