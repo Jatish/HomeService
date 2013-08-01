@@ -72,7 +72,7 @@
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\HSG.Service\bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http">
       <Private>True</Private>
@@ -226,7 +226,6 @@
     </None>
     <None Include="Service References\CatalogServiceReference\CatalogService1.disco" />
     <Content Include="Views\Admin\Index.aspx" />
-    <Content Include="Views\Catalog\Index.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Home\Welcome.aspx" />
     <Content Include="Views\Login\Index.aspx" />
@@ -250,6 +249,7 @@
     <Folder Include="Scripts\HSG\Notification\" />
     <Folder Include="Scripts\HSG\Order\" />
     <Folder Include="Scripts\HSG\User\" />
+    <Folder Include="Views\Catalog\" />
     <Folder Include="Views\Common\" />
     <Folder Include="Views\Inventory\" />
     <Folder Include="Views\Marketing\" />
