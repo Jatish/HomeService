@@ -65,8 +65,7 @@ function loadProductListViewContent() {
     vProducts = getData(jsonHSGServices.Catalog + "/GetProducts", {}, false, false, false);
     var hBreadCrumb = document.getElementById("hBreadCrumb");
     var str = '';
-    str += '<a href="javascript:void(0);" onclick="buildAdminMainPage();">Administration Menu</a> <b>&gt;</b>';
-    str += '<a href="javascript:void(0);" onclick="loadProductManagerContent();">Product Manager</a> <b>&gt;</b>Products';
+    str += '<a href="javascript:void(0);" onclick="buildAdminMainPage();">Administration Menu</a>  <b>&gt;</b>Products';
     hBreadCrumb.innerHTML = str;
 
     sHtml += '<table width="100%"><tr>';
@@ -85,32 +84,33 @@ function loadProductListViewContent() {
     sHtml += '</tr></table>';
 
     sHtml += '<table class="table-listview tvat alt-rows">';
-    sHtml += '<colgroup><col align="left" /><col align="left" /><col align="left" /><col /><col /></colgroup>'
+    sHtml += '<colgroup><col align="left" /><col align="left" /><col align="left" /><col /><col /><col/></colgroup>'
     sHtml += '<tr class="th-1 tvam"><td style="text-align: left;">Product Name</td><td style="text-align: left;">OnHand Quantity</td>';
     sHtml += '<td style="text-align: left;">Created By</td><td>Purchase Price</td><td>Selling Price</td>';
-    sHtml += '<td></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>';
+    sHtml += '<td>&nbsp;</td></tr>';
     //    sHtml += '<tr id="trSort" class="th-1 th_sort alt">';
     //    sHtml += prepareSortRow();
     //    sHtml += '<tr/>';
     sHtml += '<tbody id="tblProducts">';
-    str += loadProductList(vProducts);
     sHtml += '</tbody>';
     sHtml += '</table>';
     $('#divAdminMainContent').empty().html(sHtml);
+    
+    loadProductList();
 }
 
-function loadProductList(vProducts) {
-    //if (vProducts.length > 0) {
+function loadProductList() {
+   // if (vProducts.length > 0) {
         // vProducts.Products;
         // vProducts.ProductsCount;
-        $('#divProducts').show();
+        //$('#divProducts').show();
         //$('#divSearchProduct').show();
-        $('#divNoData').hide();
-        //$('#tblProducts').empty().append(prepareProductListBody());
+        //$('#divNoData').hide();
+        $('#tblProducts').empty().append(prepareProductListBody($.parseJSON(vProducts.GetProductsResult).Products));
         //bind paging div on page load, so passing 1 as current page  
         BuildPager(10, 1, 'divPager');
         //onAutoSuggest('txtSearch', vProducts.AutoSuggest);
-//    } else {
+ //   } else {
 //        if (vProducts.ProductsCount <= 0) $('#divProducts').hide();
 //        $('#divCoursePlans').hide();
 //        $('#divPager').hide();
@@ -122,19 +122,18 @@ function loadProductList(vProducts) {
 /*
 * Function to prepare body of the grid with data as per the page size.
 */
-function prepareProductListBody() {
+function prepareProductListBody(products) {
     var s1 = '';
-    $.each(vProducts, function (iIndex, item) {
+    $.each(products, function (iIndex, item) {
         s1 += '<tr id="trCoursePlan_' + item.ProductID + '" ' + ((iIndex % 2 == 0) ? 'class="alt"' : '') + '>';
-        s1 += '<td style="text-align: left;"><a href="javascript:void(0);" onclick="javascript:onAECoursePlan(' + item.CoursePlanID + ', false);">' + item.ProducName + '</a></td>';
-        s1 += '<td style="text-align: left;">' + item.Category + '</td>';
-        s1 += '<td style="text-align: left;">' + item.ProductType + '</td>';
+        s1 += '<td style="text-align: left;"><a href="javascript:void(0);" onclick="">' + item.Name + '</a></td>';
+        s1 += '<td style="text-align: left;">' + item.OnHandQuantity + '</td>';
+        s1 += '<td style="text-align: left;">' + item.CreatedBy + '</td>';
         s1 += '<td>' + item.PurchasePrice + '</td>';
         s1 += '<td>' + item.SellingPrice + '</td>';
-        s1 += '<td>' + item.OnHandQuantity + '</td>';
-        s1 += '<td><a id="lbtnLock_' + iIndex + '" href="javascript:void(0);" class="icon-link ' + ((item.IsActive) ? "icon-locked" : "icon-unlocked") + '" title="' + ((item.IsCoursePlanLocked) ? "Unlock Course Plan" : "Lock Course Plan") + '" onclick="javascript:onLockCoursePlan(' + iIndex + ')"></a></td>';
-        s1 += '<td><a id="lbtnCoursePlanning_' + iIndex + '" href="javascript:void(0);" class="buttons-6 silver" ' + ((item.ExpirationDate) ? "" : "style=\"display:none;\"") + ' onclick="javascript:onAECoursePlan(' + item.CoursePlanID + ', true);">Course Planning</a></td>';
-        s1 += '<td><a href="javascript:void(0);" class="icon-link icon-delete" onclick="javascript:onDeleteCoursePlan(' + item.CoursePlanID + ', \'' + item.ProgressCode + '\');"></a></td>';
+//        s1 += '<td><a id="lbtnLock_' + iIndex + '" href="javascript:void(0);" class="icon-link ' + ((item.IsActive) ? "icon-locked" : "icon-unlocked") + '" title="' + ((item.IsCoursePlanLocked) ? "Unlock Course Plan" : "Lock Course Plan") + '" onclick="javascript:onLockCoursePlan(' + iIndex + ')"></a></td>';
+//        s1 += '<td><a id="lbtnCoursePlanning_' + iIndex + '" href="javascript:void(0);" class="buttons-6 silver" ' + ((item.ExpirationDate) ? "" : "style=\"display:none;\"") + ' onclick="javascript:onAECoursePlan(' + item.CoursePlanID + ', true);">Course Planning</a></td>';
+//        s1 += '<td><a href="javascript:void(0);" class="icon-link icon-delete" onclick=""></a></td>';
         s1 += '</tr>';
     });
     return s1;
