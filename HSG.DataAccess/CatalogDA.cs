@@ -15,7 +15,7 @@ namespace HSG.DataAccess
         /// This method is used to get all the products from the catalog.
         /// </summary>
         /// <returns>Product fetched as DataSet.</returns>
-        public DataSet GetAllProducts()
+        public DataSet GetProducts()
         {
             logger.Debug("Method GetAllProducts called.");
             SqlCommand objSqlCommand = new SqlCommand();
