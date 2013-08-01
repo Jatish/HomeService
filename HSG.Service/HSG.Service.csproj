@@ -95,9 +95,8 @@
     <Folder Include="Home\" />
     <Folder Include="Inventory\" />
     <Folder Include="Marketing\" />
-    <Folder Include="Notification\" />
+    <Folder Include="Notification\User\" />
     <Folder Include="Order\" />
-    <Folder Include="User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Settings.config" />
