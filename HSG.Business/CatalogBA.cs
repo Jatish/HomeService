@@ -18,7 +18,7 @@ namespace HSG.Business
         public Dictionary<string, object> GetProducts()
         {
             Dictionary<string, object> dicProducts = new Dictionary<string, object>();
-            DataSet dsProducts = new CatalogDA().GetAllProducts();
+            DataSet dsProducts = new CatalogDA().GetProducts();
             if (dsProducts.Tables.Count > 0)
             {
                 Dictionary<int, ProductDO> dicProduct = new Dictionary<int, ProductDO>();
@@ -28,6 +28,8 @@ namespace HSG.Business
                     objProduct.ProductID = Convert.ToInt32(drProduct["PkProductId"]);
                     objProduct.Name = Convert.ToString(drProduct["ProductName"]);
                     objProduct.OnHandQuantity = Convert.ToInt32(drProduct["Quantity"]);
+                    objProduct.PurchasePrice = Convert.ToDecimal(drProduct["PurchasePrice"]);
+                    objProduct.SellingPrice = Convert.ToDecimal(drProduct["SellingPrice"]);
                     dicProduct.Add(objProduct.ProductID, objProduct);
                 }
                 dicProducts.Add("Products", dicProduct);
