@@ -15,10 +15,10 @@ namespace HSG.Business
         /// This method is used to get all the products and related data as a Dictionary object.
         /// </summary>
         /// <returns>Products and related data as Dictionary.</returns>
-        public Dictionary<string, object> GetProducts()
+        public Dictionary<string, object> GetProducts(int iCategoryID, int iBrandID, int iProductTypeID, string strSearchText, int iPageNo, int iPageCount)
         {
             Dictionary<string, object> dicProducts = new Dictionary<string, object>();
-            DataSet dsProducts = new CatalogDA().GetProducts();
+            DataSet dsProducts = new CatalogDA().GetProducts(iCategoryID, iBrandID, iProductTypeID, strSearchText, iPageNo, iPageCount);
             if (dsProducts.Tables.Count > 0)
             {
                 Dictionary<int, ProductDO> dicProduct = new Dictionary<int, ProductDO>();
