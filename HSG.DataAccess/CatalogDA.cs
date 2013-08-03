@@ -15,11 +15,27 @@ namespace HSG.DataAccess
         /// This method is used to get all the products from the catalog.
         /// </summary>
         /// <returns>Product fetched as DataSet.</returns>
-        public DataSet GetProducts()
+        public DataSet GetProducts(int iCategoryID, int iBrandID, int iProductTypeID, string strSearchText, int iPageNo, int iPageCount)
         {
-            logger.Debug("Method GetAllProducts called.");
+            logger.Debug("Method GetProducts called.");
             SqlCommand objSqlCommand = new SqlCommand();
-            objSqlCommand.CommandText = "hsGetProducts";
+            objSqlCommand.CommandText = "hsProductList";
+            objSqlCommand.CommandType = CommandType.StoredProcedure;
+            objSqlCommand.Parameters.AddWithValue("@CatagoryId", iCategoryID);
+            objSqlCommand.Parameters.AddWithValue("@BrandId", iBrandID);
+            objSqlCommand.Parameters.AddWithValue("@ProductTypeId", iProductTypeID);
+            objSqlCommand.Parameters.AddWithValue("@SearchText", strSearchText);
+            objSqlCommand.Parameters.AddWithValue("@PageNumber", iPageNo);
+            objSqlCommand.Parameters.AddWithValue("@NoOfRecords", iPageCount);
+
+            return DBBase.Execute.ExecuteDataset(objSqlCommand);
+        }
+
+        public DataSet GetAllLookupData()
+        {
+            logger.Debug("Method GetAllLookupData called.");
+            SqlCommand objSqlCommand = new SqlCommand();
+            objSqlCommand.CommandText = "hsProductLookUp";
             objSqlCommand.CommandType = CommandType.StoredProcedure;
 
             return DBBase.Execute.ExecuteDataset(objSqlCommand);
