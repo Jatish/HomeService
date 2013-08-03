@@ -13,10 +13,10 @@ namespace HSG.Service.Catalog
         /// This method is used to get all the products as JSON formatted string.
         /// </summary>
         /// <returns>All products as JSON formatted string.</returns>
-        public string GetProducts()
+        public string GetProducts(int iCategoryID, int iBrandID, int iProductTypeID, string strSearchText, int iPageNo, int iPageCount)
         {
             logger.Debug("Called Method GetProducts.");
-            return JsonConvert.SerializeObject(new CatalogBA().GetProducts());
+            return JsonConvert.SerializeObject(new CatalogBA().GetProducts(iCategoryID, iBrandID, iProductTypeID, strSearchText, iPageNo, iPageCount));
         }
 
         /// <summary>
