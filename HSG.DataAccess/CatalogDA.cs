@@ -31,6 +31,10 @@ namespace HSG.DataAccess
             return DBBase.Execute.ExecuteDataset(objSqlCommand);
         }
 
+        /// <summary>
+        /// This method is used for getting all the lookup data for product pages.
+        /// </summary>
+        /// <returns>All lookup data as DataSet.</returns>
         public DataSet GetAllLookupData()
         {
             logger.Debug("Method GetAllLookupData called.");
