@@ -20,6 +20,16 @@ namespace HSG.Service.Catalog
         }
 
         /// <summary>
+        /// This method is used to return all product related lookups.
+        /// </summary>
+        /// <returns>All lookups as string formatted.</returns>
+        public string GetAllLookups()
+        {
+            logger.Debug("Called Method GetAllLookups.");
+            return JsonConvert.SerializeObject(new CatalogBA().GetAllLookups());
+        }
+
+        /// <summary>
         /// This method is used to save product supplied from UI as object.
         /// </summary>
         /// <param name="objProductDO">Product as ProductDO object.</param>
