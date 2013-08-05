@@ -1,4 +1,5 @@
 ﻿var vProducts = [];
+var vLookups = [];
 
 //Paging related global variables
 var stype = '';
@@ -61,8 +62,8 @@ function loadCategoryListContent() {
 
 function loadProductListViewContent() {
     var sHtml = '';
-
-    vProducts = getData(jsonHSGServices.Catalog + "/GetProducts", {}, false, false, false);
+    vProducts = getData(jsonHSGServices.Catalog + "/GetProducts", {iCategoryID:-1, iBrandID:-1, iProductTypeID:-1, strSearchText:'', iPageNo:1, iPageCount:10}, false, false, false);
+    vLookups = getData(jsonHSGServices.Catalog + "/GetAllLookups", {}, false, false, false);
     var hBreadCrumb = document.getElementById("hBreadCrumb");
     var str = '';
     str += '<a href="javascript:void(0);" onclick="buildAdminMainPage();">Administration Menu</a>  <b>&gt;</b>Products';
@@ -95,8 +96,13 @@ function loadProductListViewContent() {
     sHtml += '</tbody>';
     sHtml += '</table>';
     $('#divAdminMainContent').empty().html(sHtml);
-    
+
     loadProductList();
+    /* Populate all combo boxes. */
+    populateCategories($.parseJSON(vLookups.GetAllLookupsResult).Categories);
+    populateBrands($.parseJSON(vLookups.GetAllLookupsResult).Brands);
+    populateProductTypes($.parseJSON(vLookups.GetAllLookupsResult).ProductTypes);
+    /* End Populate all combo boxes. */
 }
 
 function loadProductList() {
@@ -235,9 +241,9 @@ function loadProductAddEditView(productID) {
     $('#divAdminMainContent').empty().html(sHtml);
 
     /* Populate all combo boxes. */
-    // populateCategories(vProducts.Categories);
-    // populateBrands(vProducts.Brands);
-    // populateProductTypes(vProducts.ProductTypes);
+    populateCategories($.parseJSON(vLookups.GetAllLookupsResult).Categories);
+    populateBrands($.parseJSON(vLookups.GetAllLookupsResult).Brands);
+    populateProductTypes($.parseJSON(vLookups.GetAllLookupsResult).ProductTypes);
     /* End Populate all combo boxes. */
 
     /* START populating product details */
@@ -247,46 +253,53 @@ function loadProductAddEditView(productID) {
     /* END populating product details */
 }
 
-function populateCategories(vCategories){
+/*
+* This is used for populating the Categories in dropdown.
+*/
+function populateCategories(vCategories) {
     var sHTML = '';
     sHTML += '<option value="0" selected="selected">Select Category</option>';
-    $.each(vJsonResourceData.Subjects, function (iSubjectID, objSubject) {
-        sHTML += '<option value="' + objSubject.Code + '" ' + ((vMode == 'edit' && vJsonResourceData.Resource.SubjectCode == objSubject.Code) ? 'selected=selected' : '') + '>' + objSubject.Label + '</option>';
+    $.each(vCategories, function (iCategoryID, objCategory) {
+        sHTML += '<option value="' + iCategoryID + '">' + objCategory.CategoryName + '</option>';
     });
-    $('#trSubject').show();
-    $('#ddlSubject').html(sHTML);
+    $('#ddlCategory').html(sHTML);
 }
 
+/*
+* This is used for populating the Categories in dropdown.
+*/
 function onChangeCategory() {
-    bIsChanged = true;
-    var strSubjectCode = $('#ddlSubject option:selected').val();
-    if (strSubjectCode == 'M') {
-        $('#trGenreCode').hide();
-        applyRowColors();
-    }
-    else if (strSubjectCode == 'E' && $('#ddlClassification option:selected').val() == 'OT') loadGenre();
+    var iSelectedCatID = $('#ddlCategory option:selected').val();
+    alert(iSelectedCatID);
 }
 
+/*
+* This is used for populating the Brands in dropdown.
+*/
 function populateBrands(vBrands) {
     var sHTML = '';
-    sHTML += '<option value="0" selected="selected">Select Category</option>';
-    $.each(vJsonResourceData.Subjects, function (iSubjectID, objSubject) {
-        sHTML += '<option value="' + objSubject.Code + '" ' + ((vMode == 'edit' && vJsonResourceData.Resource.SubjectCode == objSubject.Code) ? 'selected=selected' : '') + '>' + objSubject.Label + '</option>';
+    sHTML += '<option value="0" selected="selected">Select Brand</option>';
+    $.each(vBrands, function (iBrandID) {
+        sHTML += '<option value="' + iBrandID + '">' + vBrands[iBrandID] + '</option>';
     });
-    $('#trSubject').show();
-    $('#ddlSubject').html(sHTML);
+    $('#ddlBrand').html(sHTML);
 }
 
+/*
+ * This is used for populating the Product Types in dropdown.
+ */
 function populateProductTypes(vProductTypes) {
-    var sHTML = '';
-    sHTML += '<option value="0" selected="selected">Select Category</option>';
-    $.each(vJsonResourceData.Subjects, function (iSubjectID, objSubject) {
-        sHTML += '<option value="' + objSubject.Code + '" ' + ((vMode == 'edit' && vJsonResourceData.Resource.SubjectCode == objSubject.Code) ? 'selected=selected' : '') + '>' + objSubject.Label + '</option>';
-    });
-    $('#trSubject').show();
-    $('#ddlSubject').html(sHTML);
+var sHTML = '';
+sHTML += '<option value="0" selected="selected">Select ProductType</option>';
+$.each(vProductTypes, function (iProdTypeID) {
+sHTML += '<option value="' + iProdTypeID + '">' + vProductTypes[iProdTypeID] + '</option>';
+});
+$('#ddlType').html(sHTML);
 }
 
+/*
+* This method is used for saving product record data.
+*/
 function saveProduct(productID) {
     var vProduct = {ProductID:productID, CategoryID:1, ProductTypeID:1, BrandID:1, ProductAvailableStatusID:1, Name:'Name', BatchNo:'batchno', OnHandQuantity:1, PurchasePrice:0, SellingPrice:1, ImagePath:'ImagePath', CreatedBy:1, ModificationStatus:true, ModifiedBy:1 };
     var vResponse = postData(jsonAppData.ContextPath + 'Catalog/SaveProduct', vProduct, false, false, false);
