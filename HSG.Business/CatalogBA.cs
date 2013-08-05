@@ -38,6 +38,57 @@ namespace HSG.Business
         }
 
         /// <summary>
+        /// This method is used to retrieve all the lookups for the product pages.
+        /// </summary>
+        /// <returns>All lookup values as Dictionary.</returns>
+        public Dictionary<string, object> GetAllLookups()
+        {
+            logger.Debug("Entered into method GetAllLookups.");
+
+            Dictionary<string, object> dicAllLookups = new Dictionary<string,object>();
+            DataSet dsLookups = new CatalogDA().GetAllLookupData();
+            logger.Debug("Total tables retrieved from database are : " + dsLookups.Tables.Count);
+
+            try
+            {
+                if (dsLookups.Tables.Count > 0 && dsLookups.Tables[0].Rows.Count > 0)
+                {
+                    Dictionary<int, CategoryDO> dicCategory = new Dictionary<int, CategoryDO>();
+                    foreach (DataRow drCatagory in dsLookups.Tables[0].Rows)
+                    {
+                        CategoryDO objCategoryDO = new CategoryDO();
+                        objCategoryDO.CategoryID = Convert.ToInt32(drCatagory["PkCatagoryId"]);
+                        objCategoryDO.ParentCategoryID = Convert.ToInt32(drCatagory["FkParentCatagoryId"]);
+                        objCategoryDO.CategoryName = Convert.ToString(drCatagory["CatagoryName"]);
+                        dicCategory.Add(objCategoryDO.CategoryID, objCategoryDO);
+                    }
+                    dicAllLookups.Add("Categories", dicCategory);
+
+                    if (dsLookups.Tables.Count > 1 && dsLookups.Tables[1].Rows.Count > 0)
+                    {
+                        Dictionary<int, string> dicProductType = new Dictionary<int, string>();
+                        foreach (DataRow drProductType in dsLookups.Tables[1].Rows)
+                            dicProductType.Add(Convert.ToInt32(drProductType["PkProductTypeId"]), Convert.ToString(drProductType["Description"]));
+                        dicAllLookups.Add("ProductTypes", dicProductType);
+                    }
+
+                    if (dsLookups.Tables.Count > 2 && dsLookups.Tables[2].Rows.Count > 0)
+                    {
+                        Dictionary<int, string> dicBrand = new Dictionary<int, string>();
+                        foreach (DataRow drBrand in dsLookups.Tables[2].Rows)
+                            dicBrand.Add(Convert.ToInt32(drBrand["PkBrandId"]), Convert.ToString(drBrand["BrandName"]));
+                        dicAllLookups.Add("Brands", dicBrand);
+                    }
+                }
+            }
+            catch (Exception objExc)
+            {
+                logger.Error("Method GetAllLookups : " + objExc.ToString());
+            }
+            return dicAllLookups;
+        }
+
+        /// <summary>
         /// This method is used to save the product
         /// </summary>
         /// <param name="objProduct">Product information as ProductDO object.</param>
