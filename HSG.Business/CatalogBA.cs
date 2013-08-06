@@ -58,7 +58,7 @@ namespace HSG.Business
                     {
                         CategoryDO objCategoryDO = new CategoryDO();
                         objCategoryDO.CategoryID = Convert.ToInt32(drCatagory["PkCatagoryId"]);
-                        objCategoryDO.ParentCategoryID = Convert.ToInt32(drCatagory["FkParentCatagoryId"]);
+                        objCategoryDO.ParentCategoryID = drCatagory["FkParentCatagoryId"] != DBNull.Value?Convert.ToInt32(drCatagory["FkParentCatagoryId"]):-1;
                         objCategoryDO.CategoryName = Convert.ToString(drCatagory["CatagoryName"]);
                         dicCategory.Add(objCategoryDO.CategoryID, objCategoryDO);
                     }
