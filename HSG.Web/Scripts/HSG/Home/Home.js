@@ -5,9 +5,9 @@
     s += '<td colspan="2" class="all-round-corner">';
     s += '<div id="banner-fade">';
     s += '<ul class="bjqs">';
-    s += '<li><img src="../../Content/Images/Slider/banner01.jpg" title="Free Shipping on amount above Rs 500/-." alt="No Image" /></li>';
-    s += '<li><img src="../../Content/Images/Slider/banner02.jpg" title="Get 10% discount of the previous purchase amount in current." alt="No Image" /></li>';
-    s += '<li><img src="../../Content/Images/Slider/banner03.jpg" title="Call to order now (+91-9861583625)." alt="No Image" /></li>';
+    s += '<li><img src="http://localhost/hsg.web/Content/Images/Slider/banner01.jpg" title="Free Shipping on amount above Rs 500/-." alt="No Image" /></li>';
+    s += '<li><img src="http://localhost/hsg.web/Content/Images/Slider/banner02.jpg" title="Get 10% discount of the previous purchase amount in current." alt="No Image" /></li>';
+    s += '<li><img src="http://localhost/hsg.web/Content/Images/Slider/banner03.jpg" title="Call to order now (+91-9861583625)." alt="No Image" /></li>';
     s += '</ul> ';
     s += '</div>';
     s += '</td>';
