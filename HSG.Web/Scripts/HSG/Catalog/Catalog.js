@@ -289,18 +289,18 @@ function populateBrands(vBrands) {
  * This is used for populating the Product Types in dropdown.
  */
 function populateProductTypes(vProductTypes) {
-var sHTML = '';
-sHTML += '<option value="0" selected="selected">Select ProductType</option>';
-$.each(vProductTypes, function (iProdTypeID) {
-sHTML += '<option value="' + iProdTypeID + '">' + vProductTypes[iProdTypeID] + '</option>';
-});
-$('#ddlType').html(sHTML);
+    var sHTML = '';
+    sHTML += '<option value="0" selected="selected">Select ProductType</option>';
+    $.each(vProductTypes, function (iProdTypeID) {
+        sHTML += '<option value="' + iProdTypeID + '">' + vProductTypes[iProdTypeID] + '</option>';
+    });
+    $('#ddlType').html(sHTML);
 }
 
 /*
 * This method is used for saving product record data.
 */
 function saveProduct(productID) {
-    var vProduct = {ProductID:productID, CategoryID:1, ProductTypeID:1, BrandID:1, ProductAvailableStatusID:1, Name:'Name', BatchNo:'batchno', OnHandQuantity:1, PurchasePrice:0, SellingPrice:1, ImagePath:'ImagePath', CreatedBy:1, ModificationStatus:true, ModifiedBy:1 };
+    var vProduct = { ProductID: productID, CategoryID: 1, ProductTypeID: 1, BrandID: 1, ProductAvailableStatusID: 1, Name: 'Name', BatchNo: 'batchno', OnHandQuantity: 1, PurchasePrice: 0, SellingPrice: 1, ImagePath: 'Content/Images/Carousal/1.jpg', CreatedBy: 1, ModificationStatus: true, ModifiedBy: 1 };
     var vResponse = postData(jsonAppData.ContextPath + 'Catalog/SaveProduct', vProduct, false, false, false);
 }
