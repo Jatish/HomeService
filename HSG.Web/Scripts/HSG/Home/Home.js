@@ -5,9 +5,9 @@
     s += '<td colspan="2" class="all-round-corner">';
     s += '<div id="banner-fade">';
     s += '<ul class="bjqs">';
-    s += '<li><img src="http://localhost/hsg.web/Content/Images/Slider/banner01.jpg" title="Free Shipping on amount above Rs 500/-." alt="No Image" /></li>';
-    s += '<li><img src="http://localhost/hsg.web/Content/Images/Slider/banner02.jpg" title="Get 10% discount of the previous purchase amount in current." alt="No Image" /></li>';
-    s += '<li><img src="http://localhost/hsg.web/Content/Images/Slider/banner03.jpg" title="Call to order now (+91-9861583625)." alt="No Image" /></li>';
+    s += '<li><img src="' + jsonAppData.ContextPath + 'Content/Images/Slider/banner01.jpg" title="Free Shipping on amount above Rs 500/-." alt="No Image" /></li>';
+    s += '<li><img src="' + jsonAppData.ContextPath + 'Content/Images/Slider/banner02.jpg" title="Get 10% discount of the previous purchase amount in current." alt="No Image" /></li>';
+    s += '<li><img src="' + jsonAppData.ContextPath + 'Content/Images/Slider/banner03.jpg" title="Call to order now (+91-9861583625)." alt="No Image" /></li>';
     s += '</ul> ';
     s += '</div>';
     s += '</td>';
@@ -17,7 +17,7 @@
     s += '<div class="list-heading">Featured Products</div>';
     s += '<ul id="ulCarouselCategories" class="jcarousel-skin-tango">';
     s += '<li>';
-    s += '<a href="javascript:void(0);"><img src="../../Content/Images/Carousal/1.jpg" alt="" /></a>';
+    s += '<a href="javascript:void(0);"><img src="' + jsonAppData.ContextPath + 'Content/Images/Carousal/1.jpg" alt="" /></a>';
     s += '<p class="text">Category 1</p>';
     s += '</li>';
     s += '<li>';
