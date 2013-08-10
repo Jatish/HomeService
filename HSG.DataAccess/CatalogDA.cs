@@ -32,6 +32,51 @@ namespace HSG.DataAccess
         }
 
         /// <summary>
+        /// Get product detail data when in EDIT mode.
+        /// </summary>
+        /// <param name="iProductID">ProductID as integer.</param>
+        /// <returns>Product details as DataSet.</returns>
+        public DataSet GetProductDetail(int iProductID)
+        {
+            logger.Debug("Method GetProductDetail called.");
+            SqlCommand objSqlCommand = new SqlCommand();
+            objSqlCommand.CommandText = "hsGetProductDetail";
+            objSqlCommand.CommandType = CommandType.StoredProcedure;
+            objSqlCommand.Parameters.AddWithValue("@ProductID", iProductID);
+
+            return DBBase.Execute.ExecuteDataset(objSqlCommand);
+        }
+
+        /// <summary>
+        /// Delete Product by ID.
+        /// </summary>
+        /// <param name="iProductID">ProductID as integer.</param>
+        /// <returns></returns>
+        public void DeleteProduct(int iProductID)
+        {
+            try
+            {
+                logger.Debug("Method DeleteProduct - [hsDeleteProduct].");
+                SqlCommand objSqlCommand = null;
+                objSqlCommand = DBBase.Execute.GetCommandObject();
+                objSqlCommand.CommandText = "hsDeleteProduct";// procedure name needs to be changed.
+                objSqlCommand.CommandType = CommandType.StoredProcedure;
+
+                #region Add Parameters with Value
+
+                objSqlCommand.Parameters.AddWithValue("@ProductID", iProductID);
+                
+                #endregion
+
+                DBBase.Execute.ExecuteScalar(objSqlCommand);
+            }
+            catch (Exception objExc)
+            {
+                logger.Error("Method DeleteProduct - Error " + objExc.ToString());
+            }
+        }
+
+        /// <summary>
         /// This method is used for getting all the lookup data for product pages.
         /// </summary>
         /// <returns>All lookup data as DataSet.</returns>
