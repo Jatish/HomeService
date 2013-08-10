@@ -70,7 +70,7 @@ namespace HSG.Business
             objProduct.PurchasePrice = Convert.ToDecimal(drProduct["PurchasePrice"]);
             objProduct.SellingPrice = Convert.ToDecimal(drProduct["SellingPrice"]);
             objProduct.Description = Convert.ToString(drProduct["Description"]);
-            logger.Debug("Mapping product details successfully done.");
+            objProduct.ImagePath = Convert.ToString(drProduct["ProductImage"]);
             return objProduct;
         }
 
