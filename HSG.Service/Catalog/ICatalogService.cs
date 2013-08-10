@@ -19,5 +19,9 @@ namespace HSG.Service.Catalog
         [OperationContract]
         [WebInvoke(BodyStyle = WebMessageBodyStyle.Wrapped, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
         int SaveProduct(ProductDO objProduct);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.Wrapped, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
+        string GetProductDetail(int iProductID);
     }
 }

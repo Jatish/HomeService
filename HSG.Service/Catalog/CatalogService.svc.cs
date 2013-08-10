@@ -20,6 +20,16 @@ namespace HSG.Service.Catalog
         }
 
         /// <summary>
+        /// This method is used to get product details data by its unique ID.
+        /// </summary>
+        /// <param name="iProductID">ProductID as integer.</param>
+        /// <returns>ProductDO object with details data.</returns>
+        public string GetProductDetail(int iProductID)
+        {
+            return JsonConvert.SerializeObject(new CatalogBA().GetProductDetail(iProductID));
+        }
+
+        /// <summary>
         /// This method is used to return all product related lookups.
         /// </summary>
         /// <returns>All lookups as string formatted.</returns>
