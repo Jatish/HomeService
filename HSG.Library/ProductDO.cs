@@ -76,6 +76,11 @@ namespace HSG.Library
         /// </summary>
         private int _iModifiedBy;
 
+        /// <summary>
+        ///
+        /// </summary>
+        private string _strDescription;
+
         #endregion
 
         #region Constructors
@@ -98,6 +103,7 @@ namespace HSG.Library
             this._strImagePath = string.Empty;
             this._iCreatedBy = -1;
             this._bModificationStatus = false;
+            this._strDescription = string.Empty;
         }
 
         #endregion
@@ -242,6 +248,15 @@ namespace HSG.Library
         {
             get { return this._iModifiedBy; }
             set { this._iModifiedBy = value; }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Description
+        {
+            get { return this._strDescription; }
+            set { this._strDescription = value; }
         }
 
         #endregion
