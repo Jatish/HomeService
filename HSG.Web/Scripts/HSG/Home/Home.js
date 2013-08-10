@@ -16,28 +16,7 @@
     s += '<td colspan="2" style="width:70%;">';
     s += '<div class="list-heading">Featured Products</div>';
     s += '<ul id="ulCarouselCategories" class="jcarousel-skin-tango">';
-    s += '<li>';
-    s += '<a href="javascript:void(0);"><img src="' + jsonAppData.ContextPath + 'Content/Images/Carousal/1.jpg" alt="" /></a>';
-    s += '<p class="text">Category 1</p>';
-    s += '</li>';
-    s += '<li>';
-    s += '<a href="javascript:void(0);"><img src="http://static.flickr.com/75/199481072_b4a0d09597_s.jpg" alt="" /></a>';
-    s += '<p class="text">Category 2</p>';
-    s += '</li>';
-    s += '<li>';
-    s += '<a href="javascript:void(0);"><img src="http://static.flickr.com/57/199481087_33ae73a8de_s.jpg" alt="" /></a>';
-    s += '<p class="text">Category 3</p>';
-    s += '</li>';
-    s += '<li>';
-    s += '<a href="javascript:void(0);"><img src="http://static.flickr.com/77/199481108_4359e6b971_s.jpg" alt="" /></a>';
-    s += '<p class="text">Category 4</p>';
-    s += '</li>';
-    s += '<li><a href="javascript:void(0);"><img src="http://static.flickr.com/58/199481143_3c148d9dd3_s.jpg" alt="" /></a></li>';
-    s += '<li><a href="javascript:void(0);"><img src="http://static.flickr.com/72/199481203_ad4cdcf109_s.jpg" alt="" /></a></li>';
-    s += '<li><a href="javascript:void(0);"><img src="http://static.flickr.com/58/199481218_264ce20da0_s.jpg" alt="" /></a></li>';
-    s += '<li><a href="javascript:void(0);"><img src="http://static.flickr.com/69/199481255_fdfe885f87_s.jpg" alt="" /></a></li>';
-    s += '<li><a href="javascript:void(0);"><img src="http://static.flickr.com/60/199480111_87d4cb3e38_s.jpg" alt="" /></a></li>';
-    s += '<li><a href="javascript:void(0);"><img src="http://static.flickr.com/70/229228324_08223b70fa_s.jpg" alt="" /></a></li>';
+    s += getAllFeaturedProducts();
     s += '</ul>';
     s += '</td>';
     s += '</tr>';
@@ -60,4 +39,23 @@
     s += '</tr></table>';
 
     return s;
+}
+
+function getHomePageData() {
+}
+
+function getAllFeaturedProducts() {
+  var vProducts = getData(jsonHSGServices.Catalog + "/GetProducts", { iCategoryID: -1, iBrandID: -1, iProductTypeID: -1, strSearchText: '', iPageNo: 1, iPageCount: 10 }, false, false, false);
+  var  s = '';
+  $.each($.parseJSON(vProducts.GetProductsResult).Products, function (iIndex, item) {
+      s += '<li>';
+      s += '<a href="javascript:void(0);"><img src="' + jsonAppData.ContextPath + item.ImagePath + '" alt="" /></a>';
+      s += '<p class="text">Name : ' + item.Name + ' <br/>Price : ' + item.SellingPrice + '<br/><a href="javascript:void(0);">Add To Cart</a></p>';
+      s += '</li>';
+  });
+  return s;
+}
+
+function getAllNewProducts() {
+
 }
