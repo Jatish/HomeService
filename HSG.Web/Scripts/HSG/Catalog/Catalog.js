@@ -79,9 +79,9 @@ function loadProductListViewContent() {
 
     sHtml +='<div class="list-heading">Filter By:</div>';    
     sHtml += '<table width="100%"><tr>';
-    sHtml += '<td style="width:10%;">Category:&nbsp;</td><td><select id="ddlCategory" style="width:99%;" onchange="onChangeCategory(\'\');"></select></td>';
-    sHtml += '<td style="width:10%; text-align:right;">Product Type:&nbsp;</td><td><select id="ddlType" style="width:99%;" onchange="onChangeTypes();"></select></td>';
-    sHtml += '<td style="width:10%; text-align:right;">Brand:</td><td><select id="ddlBrand" style="width:99%;" onchange="onChangeBrand();"></select></td>';
+    sHtml += '<td style="width:10%;">Category:&nbsp;</td><td><select id="ddlCategory" style="width:99%;" onchange="onChange();"></select></td>';
+    sHtml += '<td style="width:10%; text-align:right;">Product Type:&nbsp;</td><td><select id="ddlType" style="width:99%;" onchange="onChange();"></select></td>';
+    sHtml += '<td style="width:10%; text-align:right;">Brand:</td><td><select id="ddlBrand" style="width:99%;" onchange="onChange();"></select></td>';
     sHtml += '</tr></table>';
 
     sHtml += '<table class="table-listview tvat alt-rows">';
@@ -132,7 +132,7 @@ function prepareProductListBody(products) {
     var s1 = '';
     $.each(products, function (iIndex, item) {
         s1 += '<tr id="trCoursePlan_' + item.ProductID + '" ' + ((iIndex % 2 == 0) ? 'class="alt"' : '') + '>';
-        s1 += '<td style="text-align: left;"><a href="javascript:void(0);" onclick="">' + item.Name + '</a></td>';
+        s1 += '<td style="text-align: left;"><a href="javascript:void(0);" onclick="loadProductAddEditView(' + item.ProductID + ');">' + item.Name + '</a></td>';
         s1 += '<td style="text-align: left;">' + item.OnHandQuantity + '</td>';
         s1 += '<td style="text-align: left;">' + item.CreatedBy + '</td>';
         s1 += '<td>' + item.PurchasePrice + '</td>';
@@ -153,7 +153,6 @@ function loadProductAddEditView(productID) {
     var hBreadCrumb = document.getElementById("hBreadCrumb");
     var str = '';
     str += '<a href="javascript:void(0);" onclick="buildAdminMainPage();">Administration Menu</a> <b>&gt;</b>';
-    str += '<a href="javascript:void(0);" onclick="loadProductManagerContent();">Product Manager</a> <b>&gt;</b>';
     str += '<a href="javascript:void(0);" onclick="loadProductListViewContent();">Product ListView</a> <b>&gt;</b>' + ((productID != -1) ? 'Edit Product' : 'Create Product');
     hBreadCrumb.innerHTML = str;
 
@@ -161,7 +160,7 @@ function loadProductAddEditView(productID) {
     sHtml += '<table width="100%"><tr>';
     sHtml += '<td style="width:50%;"></td>';
     sHtml += '<td style="text-align:right; vertical-align:middle;">';
-    sHtml += '<button id="btnAddNew" class="hsInputStyle" type="button" style="width:80px;"><span>Add New</span></button>&nbsp;';
+    sHtml += '<button id="btnAddNew" class="hsInputStyle" type="button" style="width:80px;" onclick="loadProductAddEditView(-1);"><span>Add New</span></button>&nbsp;';
     sHtml += '<button id="btnDelectSelected" class="hsInputStyle" type="button" style="width:150px;"><span>Remove</span></button>&nbsp;';
     sHtml += '</td></tr></table>';
     sHtml += '<div id="divProductDetails">';
@@ -217,11 +216,11 @@ function loadProductAddEditView(productID) {
     sHtml += '</tr>';
     sHtml += '<tr id="tr1">';
     sHtml += '<td style="text-align: left;"><b>Purchase Price:</b></td>';
-    sHtml += '<td style="text-align: left;"><input id="Text1" type="text" style="width:250px;" /></td>';
+    sHtml += '<td style="text-align: left;"><input id="txtPurchasePrice" type="text" style="width:250px;" /></td>';
     sHtml += '</tr>';
     sHtml += '<tr id="tr2">';
     sHtml += '<td style="text-align: left;"><b>Selling Price:</b></td>';
-    sHtml += '<td style="text-align: left;"><input id="Text2" type="text" style="width:250px;" /></td>';
+    sHtml += '<td style="text-align: left;"><input id="txtSellingPrice" type="text" style="width:250px;" /></td>';
     sHtml += '</tr>';
     sHtml += '<tr id="trNotes" class="tvat">';
     sHtml += '<td style="text-align: left;"><b>Description:</b></td>';
@@ -235,7 +234,7 @@ function loadProductAddEditView(productID) {
     sHtml += '</table>';
     sHtml += '</div>';
     sHtml += '<div class="buttons tac">';
-    sHtml += '<button id="btnSave" class="hsInputStyle" type="button" style="width:70px;" onclick="javascript:saveProduct();"><span>Save</span></button>&nbsp;';
+    sHtml += '<button id="btnSave" class="hsInputStyle" type="button" style="width:70px;" onclick="saveProduct(' + productID + ');"><span>Save</span></button>&nbsp;';
     sHtml += '<button id="btnCancel" class="hsInputStyle" type="button" style="width:70px;" onclick="javascript:loadProductListViewContent();"><span>Cancel</span></button>';
     sHtml += '</div>';
     $('#divAdminMainContent').empty().html(sHtml);
@@ -248,9 +247,27 @@ function loadProductAddEditView(productID) {
 
     /* START populating product details */
     if (productID != -1) {
-        // write code to populate product details for EDIT mode
+        var vProductDetails = getData(jsonHSGServices.Catalog + "/GetProductDetail", { iProductID: productID }, false, false, false);
+        if (vProductDetails != null)
+            populateProductData(vProductDetails);
     }
     /* END populating product details */
+}
+
+/*
+* This is used for populating the product detail in EDIT mode.
+*/
+function populateProductData(vProductDetails) {
+    vProductDetails = $.parseJSON(vProductDetails.GetProductDetailResult);
+    $('#txtName').val(vProductDetails.Name);
+    $('#ddlCategory').val(vProductDetails.CategoryID);
+    $('#ddlType').val(vProductDetails.ProductTypeID);
+    $('#ddlBrand').val(vProductDetails.BrandID);
+    $('#txtBatchNo').val(vProductDetails.BatchNo);
+    $('#txtQuantity').val(vProductDetails.OnHandQuantity);
+    $('#txtPurchasePrice').val(vProductDetails.PurchasePrice);
+    $('#txtSellingPrice').val(vProductDetails.SellingPrice);
+    $('#txtNotes').val(vProductDetails.Description);
 }
 
 /*
@@ -268,9 +285,12 @@ function populateCategories(vCategories) {
 /*
 * This is used for populating the Categories in dropdown.
 */
-function onChangeCategory() {
+function onChange() {
     var iSelectedCatID = $('#ddlCategory option:selected').val();
-    alert(iSelectedCatID);
+    var iSelectedTypeID = $('#ddlType option:selected').val();
+    var iSelectedBrandID = $('#ddlBrand option:selected').val();
+    vProducts = getData(jsonHSGServices.Catalog + "/GetProducts", { iCategoryID: ((iSelectedCatID == 0) ? -1 : iSelectedCatID), iBrandID: ((iSelectedBrandID == 0) ? -1 : iSelectedBrandID), iProductTypeID: ((iSelectedTypeID == 0) ? -1 : iSelectedTypeID), strSearchText: '', iPageNo: 1, iPageCount: 10 }, false, false, false);
+    loadProductList();
 }
 
 /*
@@ -301,6 +321,6 @@ function populateProductTypes(vProductTypes) {
 * This method is used for saving product record data.
 */
 function saveProduct(productID) {
-    var vProduct = { ProductID: productID, CategoryID: 1, ProductTypeID: 1, BrandID: 1, ProductAvailableStatusID: 1, Name: 'Name', BatchNo: 'batchno', OnHandQuantity: 1, PurchasePrice: 0, SellingPrice: 1, ImagePath: 'Content/Images/Carousal/1.jpg', CreatedBy: 1, ModificationStatus: true, ModifiedBy: 1 };
+    var vProduct = { ProductID: productID, CategoryID: $('#ddlCategory').val(), ProductTypeID: $('#ddlType').val(), BrandID: $('#ddlBrand').val(), ProductAvailableStatusID: 1, Name: $('#txtName').val(), BatchNo: (($('#txtBatchNo').val()!= '')?$('#txtBatchNo').val():'test'), OnHandQuantity: $('#txtQuantity').val(), PurchasePrice: $('#txtPurchasePrice').val(), SellingPrice: $('#txtSellingPrice').val(), ImagePath: 'Content/Images/Carousal/1.jpg', CreatedBy: 1, ModificationStatus: true, ModifiedBy: 1, Description: $('#txtNotes').val()};
     var vResponse = postData(jsonAppData.ContextPath + 'Catalog/SaveProduct', vProduct, false, false, false);
 }
