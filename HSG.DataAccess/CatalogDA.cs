@@ -52,7 +52,7 @@ namespace HSG.DataAccess
         /// </summary>
         /// <param name="iProductID">ProductID as integer.</param>
         /// <returns></returns>
-        public void DeleteProduct(int iProductID)
+        public bool DeleteProduct(int iProductID)
         {
             try
             {
@@ -68,12 +68,13 @@ namespace HSG.DataAccess
                 
                 #endregion
 
-                DBBase.Execute.ExecuteScalar(objSqlCommand);
+                return Convert.ToInt32(DBBase.Execute.ExecuteScalar(objSqlCommand)) == 1 ? true : false;
             }
             catch (Exception objExc)
             {
                 logger.Error("Method DeleteProduct - Error " + objExc.ToString());
             }
+            return false;
         }
 
         /// <summary>
@@ -99,7 +100,7 @@ namespace HSG.DataAccess
         {
             try
             {
-                logger.Debug("Method SaveProduct - hsgProductSave.");
+                logger.Debug("Method SaveProduct - hsProductSave.");
                 SqlCommand objSqlCommand = null;
                 objSqlCommand = DBBase.Execute.GetCommandObject();
                 objSqlCommand.CommandText = "hsProductSave";// procedure name needs to be changed.
@@ -121,12 +122,13 @@ namespace HSG.DataAccess
                 objSqlCommand.Parameters.AddWithValue("@FkProductGroupId", 1);
                 objSqlCommand.Parameters.AddWithValue("@FkProductAvailableStatusId", objProduct.ProductAvailableStatusID);
                 objSqlCommand.Parameters.AddWithValue("@ProductName", objProduct.Name);
-                objSqlCommand.Parameters.AddWithValue("@ProcuctBatchNumber", objProduct.BatchNo);
+                objSqlCommand.Parameters.AddWithValue("@ProductBatchNumber", objProduct.BatchNo);
                 objSqlCommand.Parameters.AddWithValue("@ExpirationDate", DateTime.Now);
                 objSqlCommand.Parameters.AddWithValue("@Quantity", objProduct.OnHandQuantity);
                 objSqlCommand.Parameters.AddWithValue("@PurchasePrice", objProduct.PurchasePrice);
                 objSqlCommand.Parameters.AddWithValue("@SellingPrice", objProduct.SellingPrice);
                 objSqlCommand.Parameters.AddWithValue("@ImagePath", objProduct.ImagePath);
+                objSqlCommand.Parameters.AddWithValue("@Description", objProduct.Description);
                 //objSqlCommand.Parameters.AddWithValue("@ModificationStatus", objProduct.ModificationStatus);
 
                 #endregion
