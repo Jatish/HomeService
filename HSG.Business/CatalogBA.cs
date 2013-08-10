@@ -17,24 +17,80 @@ namespace HSG.Business
         /// <returns>Products and related data as Dictionary.</returns>
         public Dictionary<string, object> GetProducts(int iCategoryID, int iBrandID, int iProductTypeID, string strSearchText, int iPageNo, int iPageCount)
         {
+            logger.Debug("Method GetProducts called.");
+
             Dictionary<string, object> dicProducts = new Dictionary<string, object>();
             DataSet dsProducts = new CatalogDA().GetProducts(iCategoryID, iBrandID, iProductTypeID, strSearchText, iPageNo, iPageCount);
             if (dsProducts.Tables.Count > 0)
             {
+                logger.Debug("Total products returned : " + dsProducts.Tables[0].Rows.Count);
                 Dictionary<int, ProductDO> dicProduct = new Dictionary<int, ProductDO>();
                 ProductDO objProduct = new ProductDO();
                 foreach (DataRow drProduct in dsProducts.Tables[0].Rows)
                 {
-                    objProduct.ProductID = Convert.ToInt32(drProduct["PkProductId"]);
-                    objProduct.Name = Convert.ToString(drProduct["ProductName"]);
-                    objProduct.OnHandQuantity = Convert.ToInt32(drProduct["Quantity"]);
-                    objProduct.PurchasePrice = Convert.ToDecimal(drProduct["PurchasePrice"]);
-                    objProduct.SellingPrice = Convert.ToDecimal(drProduct["SellingPrice"]);
-                    dicProduct.Add(objProduct.ProductID, objProduct);
+                    objProduct = GetProductMappedData(drProduct);
+                    dicProduct.Add(objProduct.ProductID, objProduct);                    
                 }
                 dicProducts.Add("Products", dicProduct);
             }
             return dicProducts;
+        }
+
+        /// <summary>
+        /// This method is used to get product details data by its unique ID.
+        /// </summary>
+        /// <param name="iProductID">ProductID as integer.</param>
+        /// <returns>ProductDO object with details data.</returns>
+        public ProductDO GetProductDetail(int iProductID)
+        {
+            ProductDO objProduct = new ProductDO();
+            DataSet dsProductDetail = new CatalogDA().GetProductDetail(iProductID);
+            if (dsProductDetail.Tables.Count > 0 && dsProductDetail.Tables[0].Rows.Count > 0)
+            {
+                objProduct = GetProductMappedData(dsProductDetail.Tables[0].Rows[0]);
+            }
+
+            return objProduct;
+        }
+
+        /// <summary>
+        /// This method is used to map product data from DataRow to product object.
+        /// </summary>
+        /// <param name="drProduct">Product data as DataRow.</param>
+        /// <returns>Product details data as ProductDO.</returns>
+        private ProductDO GetProductMappedData(DataRow drProduct)
+        {
+            ProductDO objProduct = new ProductDO();
+            objProduct.ProductID = Convert.ToInt32(drProduct["PkProductId"]);
+            objProduct.CategoryID = Convert.ToInt32(drProduct["FkCatagoryId"]);
+            objProduct.ProductTypeID = Convert.ToInt32(drProduct["FkProductTypeId"]);
+            objProduct.BrandID = Convert.ToInt32(drProduct["FkBrandId"]);
+            objProduct.Name = Convert.ToString(drProduct["ProductName"]);
+            objProduct.OnHandQuantity = Convert.ToInt32(drProduct["Quantity"]);
+            objProduct.PurchasePrice = Convert.ToDecimal(drProduct["PurchasePrice"]);
+            objProduct.SellingPrice = Convert.ToDecimal(drProduct["SellingPrice"]);
+            objProduct.Description = Convert.ToString(drProduct["Description"]);
+            logger.Debug("Mapping product details successfully done.");
+            return objProduct;
+        }
+
+        /// <summary>
+        /// This method is used for deleting a Product by its ID.
+        /// </summary>
+        /// <param name="iProductID">ParoductID as integer.</param>
+        /// <returns>Boolean value for success or failure.</returns>
+        public bool DeleteProduct(int iProductID)
+        {
+            logger.Debug("Called method DeleteProduct");
+
+            try
+            {
+                return new CatalogDA().DeleteProduct(iProductID);
+            } catch(Exception objExc)
+            {
+                logger.Debug("Error method DeleteProduct : " +objExc.ToString());
+            }
+            return false;
         }
 
         /// <summary>
