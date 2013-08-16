@@ -288,3 +288,11 @@
 .records-paging > .records > b {font-size:15px; color:#F90; padding:0 5px; font-weight:bold}
 
 /* Paging - END */
+
+/* Small Cart - START */
+.text-right{text-align:right;}
+.text-left{text-align:left;}
+.small-cart-links{height : 16px; padding:7px 10px; background-color : #DFDCDC; vertical-align:middle;}
+.small-cart-links form a{text-align:left;}
+.smallcart-footer-links{text-decoration:none;}
+/* Small Cart - END */
