@@ -27,6 +27,7 @@ namespace HSG.Web.Controllers
             CatalogServiceClient objCatalogServiceClient = new CatalogServiceClient();
             try
             {
+                    
                 //int iUserProfileID = ((UserDO)SessionManager.ReadSession(UtilityConstants.SessionNames.USER)).UserProfileID;
                 //objProduct.CreatedBy = iUserProfileID;
                 iResult = objCatalogServiceClient.SaveProduct(objProduct);
