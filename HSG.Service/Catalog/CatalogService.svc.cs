@@ -49,5 +49,7 @@ namespace HSG.Service.Catalog
             logger.Debug("Called Method SaveProduct with parameter objProductDo : " + objProductDO.ToString());
             return new CatalogBA().SaveProduct(objProductDO);
         }
+
+
     }
 }
