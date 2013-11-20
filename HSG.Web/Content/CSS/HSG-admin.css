@@ -217,3 +217,46 @@ white-space: normal;
 
 .fl-lt {float:left;}
 .fl-rt {float:right;}
+
+
+
+.modalBackground
+{
+    position: fixed;
+    height : 100%;
+    width : 100%;
+    top:0;
+    bottom: 0 ;
+    left: 0;
+    right: 0 ;
+    margin : 0;
+    padding : 0;
+    background-color: Gray;
+    filter: alpha(opacity=70);
+    opacity: 0.7;
+    z-index: 101;    
+}
+.modalPopup
+{
+    position: fixed;
+    top: 20%;
+    left : 20%;
+    background-color: #ffffff;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #336699;
+    padding: 0px;
+    z-index: 102;
+}
+
+.popupClose
+{
+    text-align:center;
+    vertical-align: middle;
+    background:Black;
+    color:white; 
+    width: 20px; 
+    height: 20px;
+    border-radius: 8px; 
+    padding: 2px;
+}
