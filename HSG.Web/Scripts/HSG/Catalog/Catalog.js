@@ -177,25 +177,31 @@ function loadProductAddEditView(productID) {
     sHtml += '<tr id="trImage">';
     sHtml += '<td style="text-align: left;"><b>Image:</b></td>';
     sHtml += '<td style="text-align: left;">';
-    sHtml += '<input id="flFile" name="file" type="file" style="width:300px;" />';
+    sHtml += '<input id="fl File" name="file" type="file" style="width:300px;" />';
     sHtml += '</td>';
     sHtml += '</tr> ';
     sHtml += '<tr class="alt">';
     sHtml += '<td style="text-align: left;"><b>Category:</b></td>';
     sHtml += '<td style="text-align: left;">';
     sHtml += '<select id="ddlCategory" style="width:200px;" onchange="onChangeCategory(\'\');"></select>';
+
+    sHtml += '<button id = "btnAddNewCatagory"  type = "button" style = " width:20px ; height: 21px; vertical-align: middle "  onClick="AddCatagory()"><span style =" text-align : top;"> <b> + </b> </span></button>';
     sHtml += '</td>';
     sHtml += '</tr>';
     sHtml += '<tr id="trType">';
     sHtml += '<td style="text-align: left;"><b>Type:</b></td>';
     sHtml += '<td style="text-align: left;">';
     sHtml += '<select id="ddlType" style="width:200px;" onchange="onChangeTypes();"></select>';
+
+    sHtml += '<button id = "btnAddProductType"  type = "button" style = " width:20px ; height: 21px; vertical-align: middle "  onClick="AddProductType()"><span style =" text-align : top;"> <b> + </b> </span></button>';
     sHtml += '</td>';
     sHtml += '</tr>';
     sHtml += '<tr id="trBrand">';
     sHtml += '<td style="text-align: left;"><b>Brand:</b></td>';
     sHtml += '<td style="text-align: left;">';
     sHtml += '<select id="ddlBrand" style="width:200px;" onchange="onChangeBrand();"></select>';
+
+    sHtml += '<button id = "btnBrand"  type = "button" style = " width:20px ; height: 21px; vertical-align: middle "  onClick="AddBrand()"><span style =" text-align : top;"> <b> + </b> </span></button>';
     sHtml += '</td>';
     sHtml += '</tr>';
     sHtml += '<tr id="trBatchNo">';
@@ -280,8 +286,16 @@ function populateCategories(vCategories) {
         sHTML += '<option value="' + iCategoryID + '">' + objCategory.CategoryName + '</option>';
     });
     $('#ddlCategory').html(sHTML);
-}
 
+}
+function populateCategoriespopup(vCategories) {
+    var sHTML = '';
+    sHTML += '<option value="0" selected="selected">Select Category</option>';
+    $.each(vCategories, function (iCategoryID, objCategory) {
+        sHTML += '<option value="' + iCategoryID + '">' + objCategory.CategoryName + '</option>';
+    });
+    $('#ddlCategorypopup').html(sHTML);
+}
 /*
 * This is used for populating the Categories in dropdown.
 */
@@ -322,5 +336,112 @@ function populateProductTypes(vProductTypes) {
 */
 function saveProduct(productID) {
     var vProduct = { ProductID: productID, CategoryID: $('#ddlCategory').val(), ProductTypeID: $('#ddlType').val(), BrandID: $('#ddlBrand').val(), ProductAvailableStatusID: 1, Name: $('#txtName').val(), BatchNo: (($('#txtBatchNo').val()!= '')?$('#txtBatchNo').val():'test'), OnHandQuantity: $('#txtQuantity').val(), PurchasePrice: $('#txtPurchasePrice').val(), SellingPrice: $('#txtSellingPrice').val(), ImagePath: 'Content/Images/Carousal/1.jpg', CreatedBy: 1, ModificationStatus: true, ModifiedBy: 1, Description: $('#txtNotes').val()};
+    var vResponse = postData(jsonAppData.ContextPath + 'Catalog/SaveProduct', vProduct, false, false, false);
+}
+
+
+/*
+* Show A popup to add new Brand
+*/
+function AddCatagory() {
+    var sHtml = '<div id = "divAddCatagory" style= "width : 400px; Height : 200px; ">';
+    sHtml += '<div style = "width: 100%; height: 25px; background: #1B7AE0; ">';
+    sHtml += '<label style="width: 200px; color: white"> <strong> Add New Catagory : </strong> </lavel>';
+    sHtml += '<label id = "popupClose" class="popupClose" style="float:right;"> <b> X </b> </label> ';
+    sHtml += '</div>'; sHtml += '<div style= "width:100%; padding-left:3%">'
+    sHtml += '<div style= "height: 20px;"> </div>'
+    sHtml += '<div style=  "width: 100%; height: 30px; text-align: Left; ">';
+    sHtml += '<label  style = "width : 30%; display:inline-block; text-align: Left;" > <b> Parent Catagory : </b> </label>';
+    sHtml += '<select id="ddlCategorypopup" style="width:60%;" onchange="onChange();"></select>'
+    sHtml += '</div>';
+    sHtml += '<div style= "width: 100% ; height: 30px; text-align:Left;">';
+    sHtml += '<label  style = "width : 30%; display: inline-block; text-align: Left;" > <b> Sub Catagory : </b> </label>';
+    sHtml += '<input type = "text" id = "txtCatagory" style = "width:58%" >';
+    sHtml += '</div>';
+    sHtml += '<div style= "height: 20px;"> </div>'
+    sHtml += '<div style="text-align: right; padding-right:12%;">';
+    sHtml += '<button id="btnSave" class="hsInputStyle" type="button" style="width:70px; height: 30px; line-height: 30px; vertical-align:text-middle;" ><span>Save</span></button>&nbsp;';
+    sHtml += '</div>'
+    sHtml += '</div>';
+    sHtml += '</div>';
+
+    $('#divPoppup').html(sHtml).addClass("modalPopup").show();
+    $('#divPopupBackground').addClass("modalBackground").show();
+    populateCategoriespopup($.parseJSON(vLookups.GetAllLookupsResult).Categories);
+    $("#popupClose").click(function (e) {
+        $('#divPoppup').fadeOut(300);
+        $('#divPopupBackground').fadeOut(300);
+    });    
+}
+
+function AddBrand() {
+    var sHtml = '<div id = "divAddCatagory" style= "width : 400px; Height : 200px; ">';
+    sHtml += '<div style = "width: 100%; height: 25px; background: #1B7AE0; ">';
+    sHtml += '<label style="width: 200px; color: white"> <strong> Add New Brand : </strong> </lavel>';
+    sHtml += '<label id = "popupClose" class="popupClose" style="float:right;"> <b> X </b> </label> ';
+    sHtml += '</div>';
+    sHtml += '<div style= "width:100%; padding-left:3%">'
+    sHtml += '<div style= "height: 20px;"> </div>'
+    sHtml += '<div style=  "width: 100%; height: 30px; text-align: Left; ">';
+    sHtml += '<label  style = "width : 35%; display:inline-block; text-align: Left;" > <b> Brand Name : </b> </label>';
+    sHtml += '<input type = "text" id = "txtBrand" style = "width:53%" >';
+    sHtml += '</div>';
+    sHtml += '<div style= "width: 100% ; height: 30px; text-align:Left;">';
+    sHtml += '<label  style = "width : 35%; display: inline-block; text-align: Left;" > <b> Brand Description : </b> </label>';
+    sHtml += '<input type = "text" id = "txtBrandDescription" style = "width:53%" >';
+    sHtml += '</div>';
+    sHtml += '<div style= "width: 100% ; height: 30px; text-align:Left;">';
+    sHtml += '<label  style = "width : 35%; display: inline-block; text-align: Left;" > <b> Image : </b> </label>';
+    sHtml += '<input type = "file" id = "fileImage" style = "width:53%" >';
+    sHtml += '</div>';
+    sHtml += '<div style= "height: 20px;"> </div>'
+    sHtml += '<div style="text-align: right; padding-right:12%;">';
+    sHtml += '<button id="btnSave" class="hsInputStyle" type="button" style="width:70px; height: 30px; line-height: 30px; vertical-align:text-middle;" ><span>Save</span></button>&nbsp;';
+    sHtml += '</div>'
+    sHtml += '</div>';
+    sHtml += '</div>';
+
+    $('#divPoppup').html(sHtml).addClass("modalPopup").show();
+    $('#divPopupBackground').addClass("modalBackground").show();
+    $("#popupClose").click(function (e) {
+        $('#divPoppup').fadeOut(300);
+        $('#divPopupBackground').fadeOut(300);
+    });
+}
+
+
+function AddProductType() {
+    var sHtml = '<div id = "divAddCatagory" style= "width : 400px; Height : 200px; ">';
+    sHtml += '<div style = "width: 100%; height: 25px; background: #1B7AE0; ">';
+    sHtml += '<label style="width: 200px; color: white"> <strong> Add New ProductType : </strong> </lavel>';
+    sHtml += '<label id = "popupClose" class="popupClose" style="float:right;"> <b> X </b> </label> '; 
+    sHtml += '</div>';
+    sHtml += '<div style= "width:100%; padding-left:3%">'
+    sHtml += '<div style= "height: 20px;"> </div>'
+    sHtml += '<div style=  "width: 100%; height: 30px; text-align: Left; ">';
+    sHtml += '<label  style = "width : 35%; display:inline-block; text-align: Left;" > <b> Product Type : </b> </label>';
+    sHtml += '<input type = "text" id = "txtBrand" style = "width:53%" >';
+    sHtml += '</div>';
+    sHtml += '<div style= "width: 100% ; height: 30px; text-align:Left;">';
+    sHtml += '<label  style = "width : 35%; display: inline-block; text-align: Left;" > <b> Product Description : </b> </label>';
+    sHtml += '<input type = "text" id = "txtBrandDescription" style = "width:53%" >';
+    sHtml += '</div>';
+    sHtml += '<div style= "height: 20px;"> </div>'
+    sHtml += '<div style="text-align: right; padding-right:12%;">';
+    sHtml += '<button id="btnSave" class="hsInputStyle" type="button" style="width:70px; height: 30px; line-height: 30px; vertical-align:text-middle;" ><span>Save</span></button>&nbsp;';
+    sHtml += '</div>'
+    sHtml += '</div>';
+    sHtml += '</div>';
+
+    $('#divPoppup').html(sHtml).addClass("modalPopup").show();
+    $('#divPopupBackground').addClass("modalBackground").show();
+    $("#popupClose").click(function (e) {
+        $('#divPoppup').fadeOut(300);
+        $('#divPopupBackground').fadeOut(300);
+    });
+}
+
+function SaveLookup(lookupType) {
+    var vProduct = { ProductID: productID, CategoryID: $('#ddlCategory').val(), ProductTypeID: $('#ddlType').val(), BrandID: $('#ddlBrand').val(), ProductAvailableStatusID: 1, Name: $('#txtName').val(), BatchNo: (($('#txtBatchNo').val() != '') ? $('#txtBatchNo').val() : 'test'), OnHandQuantity: $('#txtQuantity').val(), PurchasePrice: $('#txtPurchasePrice').val(), SellingPrice: $('#txtSellingPrice').val(), ImagePath: 'Content/Images/Carousal/1.jpg', CreatedBy: 1, ModificationStatus: true, ModifiedBy: 1, Description: $('#txtNotes').val() };
     var vResponse = postData(jsonAppData.ContextPath + 'Catalog/SaveProduct', vProduct, false, false, false);
 }
