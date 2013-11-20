@@ -10,6 +10,8 @@
     <div id="divAdminMainContent"></div>
     <div id="divPager"></div>
     <div id="divNoData" align ="center"style="color: Red;display:none;"></div>
+    <div id="divPopupBackground" ></div>
+    <div id = "divPoppup"></div>
 
 </asp:Content>
 
